@@ -1,0 +1,18 @@
+language: java
+install: cd pharmacysapp;mvn install -DskipTests=true;cd ..
+
+## do the tests
+script: 
+  - cd pharmacysapp
+  - mvn test 
+
+## a single JVM should be enough.
+## Adding openjdk7 is probably a sensible thing, but means I have to 
+## edit the ant build.xml file which is unfortunate.
+jdk:
+  - oraclejdk8
+
+## I will need to set something up to catch these. 
+notifications:
+  email:
+    - kattyadesiderio@gmail.com
