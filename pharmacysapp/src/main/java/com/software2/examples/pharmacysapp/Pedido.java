@@ -17,43 +17,38 @@ import java.text.SimpleDateFormat;
 public class Pedido {
      public ArrayList<DetallePedido> pedido;
      Date hora;
-     public int sector; // sector = {1 norte,2 centro ,3 sur}
-     Pago pago;
+     Cliente cliente;
      public double recargo;
      public double Total;
 
-    public Pedido(ArrayList<DetallePedido> pedido,Date hora, int sector, Pago pago) {
+    public Pedido(ArrayList<DetallePedido> pedido,Date hora,Cliente cliente) {
         this.pedido = pedido;
         this.hora= hora;
-        this.sector = sector;
-        this.pago = pago;
+        this.cliente=cliente;
         this.recargo=0;
         this.Total =0;
     }
-    public String GetSector(){
-         switch (this.sector) {
-             case 1:
-                 return "Norte";
-             case 2:
-                 return "Centro";
-             case 3:
-                 return "Sur";
-             default:
-                 break;
-         }
-         return null;
+
+    public Cliente getCliente() {
+        return cliente;
     }
+
+    public void setTotal(double Total) {
+        this.Total = Total;
+    }
+    
+    
     //Validar Hora
     public String ValidHora(){
         DateFormat Horanow = new SimpleDateFormat("HH:mm");
         int h=this.hora.getHours();
-        if(this.sector==1){
+        if(this.cliente.sector==1){
             if(h >= 8 && h < 23){
                 System.out.print("Hora: " + Horanow.format(hora) + " "); 
                 return  "Horario disponible";
             }else
                 return "Fuera de Horario disponible";
-        }else if(sector==2 || sector==3){
+        }else if(this.cliente.sector==2 || this.cliente.sector==3){
             //8 a 9
             if(h >= 8 && h < 21){
                 System.out.println("Hora: " + Horanow.format(hora)+ " "); 
@@ -64,12 +59,12 @@ public class Pedido {
          return "Sector no válido";
     }
     
-    public double GetRecargo(int sector, double subtotalProductos){
+    public double GetRecargo(Cliente cliente, double subtotalProductos){
         if(subtotalProductos <= 10.00 && subtotalProductos > 0){
-            if (sector==1){
+            if (cliente.sector==1){
                 return this.recargo=4.00;
             }
-            else if (sector==2 || sector==3)
+            else if (cliente.sector==2 || this.cliente.sector==3)
                 return this.recargo=2.00;
             else{
                 System.out.println("Sector no válido");
@@ -78,7 +73,16 @@ public class Pedido {
         return this.recargo;
     }
     
-    
+    public double TotalPedido(){
+        double total=0.0,r=0.0;
+        for (DetallePedido pe : this.pedido){
+            total= total + pe.SubtotalDeProducto();
+        }
+        
+        r=this.GetRecargo(cliente, total);
+        this.setTotal(total + r);
+        return this.Total;
+    }
     
     public String ToStringTotal(){
         return "Se completo su pedido";

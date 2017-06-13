@@ -114,11 +114,14 @@ public class PedidoTest {
         Pago pa=new Pago();
         //Ingresa el tipo de pago
         pa.crear_pago(true,"");
+        Cliente client=new Cliente("Juan", 1, pa);
+        System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
         double subt=detalle1.subtotal +detalle2.subtotal;
         System.out.println("El subtotal a pagar es: " + subt);
         assertEquals(true, pa.getTipo());
         System.out.println("----Test 3----\n");      
     }
+    
 
 }
