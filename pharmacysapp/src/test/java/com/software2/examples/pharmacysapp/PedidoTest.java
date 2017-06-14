@@ -29,6 +29,7 @@ import org.junit.Test;
 
 /*
  * Comentarios
+ * No hay uso de standar para la notacion de las variables, funciones. Usan sin ningun patron underscore y camelCase
  * 
  * */
 public class PedidoTest {
@@ -136,7 +137,7 @@ public class PedidoTest {
         Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
         DetallePedido detalle1 = new DetallePedido(p1,1);
         DetallePedido detalle2 = new DetallePedido(p2,1);
-        //carrito = new ArrayList<DetallePedido>();
+        carrito = new ArrayList<DetallePedido>();
         carrito.add(detalle1);
         carrito.add(detalle2);
         //visualizar el pedido con los productos seleccionados.
@@ -144,15 +145,14 @@ public class PedidoTest {
         Pago pa=new Pago();
         //Ingresa el tipo de pago
         pa.crear_pago(true,"");
-        Cliente client=new Cliente("Kerly", 2, pa);
+        Cliente client=new Cliente("Kerly", 1, pa);
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
         double subt=detalle1.subtotal +detalle2.subtotal;
         System.out.println("El subtotal a pagar es: " + subt);
         Pedido pedido = new Pedido(carrito, new Date(), client);
-        
-        assertEquals("Horario disponible", pedido.ValidHora());//experado,obtenido
         System.out.println(pedido.ValidHora());
+        assertEquals("Horario disponible", pedido.ValidHora());//experado,obtenido
         System.out.println("----Test 4----\n");  
     }
     
@@ -163,7 +163,7 @@ public class PedidoTest {
         Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
         DetallePedido detalle1 = new DetallePedido(p1,1);
         DetallePedido detalle2 = new DetallePedido(p2,1);
-        //carrito = new ArrayList<DetallePedido>();
+        carrito = new ArrayList<DetallePedido>();
         carrito.add(detalle1);
         carrito.add(detalle2);
         //visualizar el pedido con los productos seleccionados.
@@ -171,7 +171,7 @@ public class PedidoTest {
         Pago pa=new Pago();
         //Ingresa el tipo de pago
         pa.crear_pago(true,"");
-        Cliente client=new Cliente("Kerly", 2, pa);
+        Cliente client=new Cliente("Kerly", 1, pa);
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
         double subt=detalle1.subtotal +detalle2.subtotal;
