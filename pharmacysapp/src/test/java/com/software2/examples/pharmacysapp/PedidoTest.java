@@ -149,6 +149,7 @@ public class PedidoTest {
         System.out.println("----Test 4----\n");      
     }
 
+
     @Test  
     public void testIntegracion_confirmarRecaTotal() {
         System.out.println("----Test 5----");      
@@ -172,6 +173,7 @@ public class PedidoTest {
         double total=recargo+subt;
         Pedido pedido=new Pedido(carrito,"09:30",client);
         assertEquals(total, pedido.TotalPedido());
+        System.out.println("El total a pagar es: " + total);
         System.out.println("----Test 5----\n");      
     }
 }
