@@ -167,7 +167,9 @@ public class PedidoTest {
         System.out.println( pa.validar_pago(pa));
         double subt=detalle1.subtotal +detalle2.subtotal;
         Pedido pe = new Pedido(carrito, new Date(),client);
+        System.out.println("El recargo es");
         System.out.println(pe.GetRecargo(client, subt));//esperado,obtenido
+        System.out.println("El total a pagar es: " + subt);
         System.out.println(pe.TotalPedido());//esperado,obtenido
         assertEquals(true, pa.getTipo());
         System.out.println("----Test 5----\n");      
