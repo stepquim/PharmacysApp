@@ -117,8 +117,10 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
+    
     @Test
     public void testIntegracion_ConfirmarPedido(){
+    	Date h;
     	System.out.println("----Test 4----");
     	Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
     	Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
@@ -134,11 +136,9 @@ public class PedidoTest {
     	
     	Cliente comprador = new Cliente("Kerly", 2, pa);
     	
-    	Date fActual = new Date();
-    	System.out.println(fActual);
-    	Pedido pConfirmar = new Pedido(carrito,fActual,comprador);
-    	
-    	assertEquals("Horario disponible",pConfirmar.ValidHora());
+    	Pedido pConfirmar = new Pedido(carrito,h,comprador);
+    	pConfirmar.ValidHora();
+    	assertEquals("Se completo su pedido",pConfirmar.toString());
     	
     }
     
