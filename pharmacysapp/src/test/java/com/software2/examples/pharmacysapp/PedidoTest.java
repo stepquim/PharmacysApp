@@ -124,5 +124,63 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
-
+     @Test  
+     public void testIntegracion_ConfirmarTipoPago(){
+       System.out.println("-------test 4-------- ");
+       int hora,minutos,segundos;
+       Date ahora= new Date();
+       SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss")
+       Producto p = obtener_producto_catalogo(catalogo,"Analgan");
+       Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+       DetallePedido detalle1 = new DetallePedido(p,1);
+       DetallePedido detalle2 = new DetallePedido(p2,1);
+       Calendar calendario= Calendar.getInstance();
+       Calendar calendario = new GregorianCalendar(); 
+       carrito.add(detalle1);
+       carrito.add(detalle2);
+       //visualiza el pedido
+       System.out.println(carrito.toString());
+       Pago pa=new Pago();
+       pa.crear_pago(true,"");
+       Cliente client=new Cliente("Kerly", 2, pa);
+       System.out.println(client.InfoPer());
+       System.out.println( pa.validar_pago(pa));
+       double subt=detalle1.subtotal +detalle2.subtotal;
+       System.out.println("El subtotal a pagar es: " + subt);
+       //assertEquals(true, pa.getTipo());//experado,obtenido
+       Pedido pe=new Pedido(carrito,formateador.format(ahora),client);
+       assertEquals("Horario disponible",pe.ValidHora());
+       System.out.println("----Test 4----\n");    
+     }
+     
+     
+     @Test  
+     public void testIntegracion_ConfirmarTipoPago(){
+       System.out.println("-------test 5-------- ");
+       int hora,minutos,segundos;
+       Date ahora= new Date();
+       SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss")
+       Producto p = obtener_producto_catalogo(catalogo,"Analgan");
+       Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+       DetallePedido detalle1 = new DetallePedido(p,1);
+       DetallePedido detalle2 = new DetallePedido(p2,1);
+       Calendar calendario= Calendar.getInstance();
+       Calendar calendario = new GregorianCalendar(); 
+       carrito.add(detalle1);
+       carrito.add(detalle2);
+       //visualiza el pedido
+       System.out.println(carrito.toString());
+       Pago pa=new Pago();
+       pa.crear_pago(true,"");
+       Cliente client=new Cliente("Kerly", 2, pa);
+       System.out.println(client.InfoPer());
+       System.out.println( pa.validar_pago(pa));
+       double subt=detalle1.subtotal +detalle2.subtotal;
+       System.out.println("El subtotal a pagar es: " + subt);
+       //assertEquals(true, pa.getTipo());//experado,obtenido
+       Pedido pe=new Pedido(carrito,formateador.format(ahora),client);
+       pe.GetRecargo(client, subt);
+       assertEquals(13.0,pe.TotalPedido(),1);
+       System.out.println("----Test 5----\n");  
+     }
 }
