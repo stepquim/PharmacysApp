@@ -124,5 +124,101 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
+    @Test  
+    public void testIntegracion_ConfirmarPedidoHorario() {
+        System.out.println("----Test 4----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        
+        Pago pa=new Pago();
+        pa.crear_pago(true,"");
+        Cliente cliente=new Cliente("Kerly", 2, pa);
 
+        System.out.println(carrito.toString());
+        
+        Pedido pedido = new Pedido(carrito, new java.util.Date(), cliente);
+        
+        assertEquals("Horario disponible", pedido.ValidHora());//experado,obtenido
+        System.out.println("----Test 4----\n");      
+    }
+
+    //id: 5
+    //Nombre: Revisar la funcionalidad de obtener el recargo y total a pagar
+    //Funcionalidades/Modulos: F1 Obtener Recargo, F2 Obtener total a pagar
+    //Descripcion: El usuario ingresa al sistema, agrega los productos al carrito.
+    //				visualiza el pedido, da clic en siguiente e ingresa su info de cliente
+    //				nombre, sector , horario y confirma pedido, el sistema obtiene el recargo 
+    //				al transporte si no que cumple con las condiciones y lo agrega al total de pago.
+    //Datos de Prueba: productos seleccionados="Buscapina", cantidad=1, nombre="kerly", pago="efectivo"
+    //					hora=hora actual, sector=norte
+    //Resultados esperados: el cliente da clic en confirmar pedido y se muestra el recargo adicional mas
+    //						y el total a pagar
+    //Resultados obtenidos: el usuario da clic en confirmar pedido y se muestra el recargo adicional y el total a apagar.
+    
+    @Test  
+    public void testIntegracion_ObtenerRecargoTotalPagar() {
+        System.out.println("----Test 5----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Buscapina");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        carrito.add(detalle1);
+        
+        Pago pa=new Pago();
+        pa.crear_pago(true,"");
+        Cliente cliente=new Cliente("Kerly", 1, pa);
+
+        System.out.println(carrito.toString());
+        
+        Pedido pedido = new Pedido(carrito, new java.util.Date(), cliente);
+        double total = pedido.TotalPedido();
+        System.out.println("Total a Pagar: "+ total);
+        assertEquals(9.6, total, 0.0f); //5.6 + 4 recargo
+        
+        System.out.println("----Test 5----\n");      
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
