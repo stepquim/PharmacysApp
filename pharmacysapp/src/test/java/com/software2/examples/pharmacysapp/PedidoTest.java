@@ -184,7 +184,7 @@ public class PedidoTest {
         System.out.println(validHora);
         double subt=detalle1.subtotal;
         System.out.println("Recargo de " +  pedido.GetRecargo(client, subt));
-        assertEquals( 2.00, pedido.GetRecargo(client, subt));
+        assertEquals( 2.00, pedido.GetRecargo(client, subt), 0.00001);
         System.out.println("----Test 5----\n");
         }
 }
