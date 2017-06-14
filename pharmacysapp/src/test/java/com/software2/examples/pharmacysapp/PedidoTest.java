@@ -73,12 +73,12 @@ public class PedidoTest {
     @Test
     public void testIntegracion_producto_catalogo() {
         System.out.println("----Test 1----"); 
-        System.out.println("\n(INICIAL) El catálogo de la farmacia es: " + catalogo.size());
+        System.out.println("\n(INICIAL) El catalogo de la farmacia es: " + catalogo.size());
         System.out.println(catalogo.toString());
         Producto producto5 = new Producto("Ciprofloxacina","Medicina",50,15,11.42);
         String resultado = producto5.crear_producto();
         catalogo.add(producto5);
-        System.out.println("\n(FIN) El catálogo de la farmacia es: " + catalogo.size());
+        System.out.println("\n(FIN) El catalogo de la farmacia es: " + catalogo.size());
         System.out.println(catalogo.toString()); 
         
         assertEquals("Se creo el producto exitosamente!", resultado); //experado,obtenido
@@ -151,13 +151,13 @@ public class PedidoTest {
     
     /*
      *Nombre: Revisar la funcionalidad de obtener el recargo y total a pagar. 
-     * Funcionalidades/Módulos
+     * Funcionalidades/Modulos
      * F1: Confirmar Pedido. F2: Horario de Entrega. F3: Total a Pagar
-     * Descripción
+     * Descripcion
      * El usuario ingresa al sistema, agrega los productos al carrito, visualiza el pedido. 
-     * Después da clic ensiguiente, donde ingresa nombre, sector, tipo de pago y da clic en Confirmar pedido. 
+     * Despues da clic ensiguiente, donde ingresa nombre, sector, tipo de pago y da clic en Confirmar pedido. 
      * Datos de prueba
-     * productos seleccionados = Analgan, cantidad = 1, pago=Efectivo, Nombre=”Kerly”, sector=Centro, horario=hora actual
+     * productos seleccionados = Analgan, cantidad = 1, pago=Efectivo, Nombre="Kerly", sector=Centro, horario=hora actual
      * Resultados esperados
      * El usuario da clic en Confirmar Pedido y se muestra que tiene recargo 
      * Resultados obtenidos
@@ -182,8 +182,9 @@ public class PedidoTest {
         Pedido pedido = new Pedido(carrito, new Date(), client);        
         String validHora = pedido.ValidHora();
         System.out.println(validHora);
-        System.out.println("Recargo de " +  pedido.GetRecargo());
-        assertEquals( 2.00, pedido.GetRecargo());
+        double subt=detalle1.subtotal;
+        System.out.println("Recargo de " +  pedido.GetRecargo(client, subt));
+        assertEquals( 2.00, pedido.GetRecargo(client, subt));
         System.out.println("----Test 5----\n");
         }
 }
