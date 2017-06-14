@@ -135,7 +135,6 @@ public class PedidoTest {
         carrito.add(detail1);
         System.out.println(carrito.toString());
         Pago payment=new Pago();
-        //Ingresa el tipo de pago
         payment.crear_pago(true,"");
         Cliente client=new Cliente("Kerly", 2, payment);
         System.out.println(client.InfoPer());
@@ -147,5 +146,39 @@ public class PedidoTest {
         assertEquals("Horario disponible", ped.ValidHora());
         System.out.println("----Test 4----\n");
     }
-
+    
+    @Test
+    public void testIntegracion_caso5() {
+        System.out.println("----Test 5----\n");
+        System.out.println("El usuario ingresa al sistema\n");
+        System.out.println("El usuario da click en 'Ver Catalogo'\n");
+        System.out.println("El catálogo de la farmacia es: " + catalogo.size() + "\n");
+        System.out.println(catalogo.toString());
+        System.out.println("El usuario aniade los productos deseados al carrito\n");
+        Producto product1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto product2 = obtener_producto_catalogo(catalogo,"Buscapina");
+        DetallePedido detail1 = new DetallePedido(product1,1);
+        DetallePedido detail2 = new DetallePedido(product2,1);
+        carrito.add(detail1);
+        carrito.add(detail1);
+        System.out.println("El usuario da click en 'Visualizar el pedido con los productos agregados'\n");
+        System.out.println(carrito.toString());
+        System.out.println("El usuario da click en 'Siguiente' e ingresa 'Nombre', 'Sector' y 'Tipo de Pago'");
+        Pago payment=new Pago();
+        payment.crear_pago(true,"");
+        Cliente client=new Cliente("Ivan", 1, payment);
+        System.out.println(client.InfoPer());
+        System.out.println( payment.validar_pago(payment));
+        double subt=detail1.subtotal +detail2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        System.out.println("El usuario da click en 'Confirmar el pedido'");
+        Date current = new Date();
+        Pedido ped = new Pedido(carrito, current, client);
+        System.out.println("Validacion de horario: " + ped.ValidHora());
+        System.out.println("Subtotal: " + subt);
+        System.out.println("Recargo: " + ped.GetRecargo(client, subt));
+        System.out.println("Total: " + ped.TotalPedido());
+        assertEquals(11.1,ped.TotalPedido(), 1);
+        System.out.println("----Test 5----\n");
+    }
 }
