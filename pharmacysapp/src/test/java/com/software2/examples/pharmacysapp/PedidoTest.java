@@ -135,6 +135,7 @@ public class PedidoTest {
     	Cliente comprador = new Cliente("Kerly", 2, pa);
     	
     	Date fActual = new Date();
+    	System.out.println(fActual);
     	Pedido pConfirmar = new Pedido(carrito,fActual,comprador);
     	
     	assertEquals("Horario disponible",pConfirmar.ValidHora());
