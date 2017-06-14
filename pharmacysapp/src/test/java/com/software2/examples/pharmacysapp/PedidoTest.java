@@ -155,7 +155,7 @@ public class PedidoTest {
      
      
      @Test  
-     public void testIntegracion_ConfirmarTipoPago(){
+     public void testIntegracion_RecargoyTotal(){
        System.out.println("-------test 5-------- ");
        int hora,minutos,segundos;
        Date ahora= new Date();
@@ -184,3 +184,32 @@ public class PedidoTest {
        System.out.println("----Test 5----\n");  
      }
 }
+
+/* 
+F1: obtener el recargo
+F2: obtener el total a pagar
+
+Descripcion
+el usuario ingresa al sistema, agrega los productos al carrito, vizualiza el pedido
+despues da clic en siguiente, donde ingresa el nombre, sector, tipo de pago y da clic 
+en confirmar pedido y acontinuacion le muestra el total de su pedido.
+Nota: el sistema compara si el total a pagar es el esperado, al hacer el pedido y con los recargos
+en el caso que sea necesario 
+
+Datos de prueba:
+productos seleccionados: analagan,Diclofenaco;
+cantidad=1,1;
+pago=Efectivo,
+Nombre="kerly";
+sector=Centro;
+horario=hora actual;
+
+Resultado Esperado
+
+El usuario selecciona su pedido y da clic en confirmar y recebira el total de la compra
+cuyo valor es $13.0
+
+Resultado obtenido:
+el usuario selecciona sus productos y le muestra el total de su compra cuyo valor es $13.0
+*/
+
