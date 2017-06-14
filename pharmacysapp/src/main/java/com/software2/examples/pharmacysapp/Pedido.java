@@ -58,7 +58,8 @@ public class Pedido {
         }
          return "Sector no válido";
     }
-    //Funcion donde ingresa los parametros: Cliente y subtotal del pedido para retornar al recargo a pagar que es de tipo double.
+    //Funcion donde ingresa los parametros: Cliente y subtotal del pedido 
+    //para retornar al recargo a pagar que es de tipo double.
     public double GetRecargo(Cliente cliente, double subtotalProductos){
         if(subtotalProductos <= 10.00 && subtotalProductos > 0){ //Si el subtotal es menor que 10, tiene recargo.
             if (cliente.sector==1){
@@ -73,7 +74,8 @@ public class Pedido {
         return this.recargo;// El subtotal es mayor que 10, tiene recargo 0.
     }
     
-    //Funcion que retorna el Total del pedido, que engloba el subtotal de los productos añadidos al carrito y el recargo.
+    //Funcion que retorna el Total del pedido, que 
+    // engloba el subtotal de los productos añadidos al carrito y el recargo.
     public double TotalPedido(){
         double total=0.0,r=0.0;
         for (DetallePedido pe : this.pedido){
