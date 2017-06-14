@@ -124,5 +124,70 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
+    @Test
+    public void testIntegracion_PagoPorHorario(){
+    	System.out.println("----Test 4----");
+    	Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");//selecciono los productos del catálogo
+    	Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+    	
+    	DetallePedido detalle1 = new DetallePedido(p1,1.1);//Selecciono la cantidad indicada de 1.1
+    	DetallePedido detalle2 = new DetallePedido(p2,1.1);
+    	
+    	carrito.add(detalle1);
+    	carrito.add(detalle2);
+    	
+    	System.out.println(carrito.toString());
+    	Pago pa=new Pago();
+    	
+    	pa.crear_pago(true,"");//Pago en efectivo
+    	
+    	Cliente client=new Cliente("Kerly", 2, pa);//cliente Kerly, del sector 2 (Centro) y pago en efectivo
+    	System.out.println(client.InfoPer());
+    	
+    	DateFormat Horanow = new SimpleDateFormat("HH:mm");
+    	Pedido pedido = new Pedido(detalle1, detalle2, Horanow, client);
+    	
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        assertEquals("Horario disponible", pedido.ValidHora());//esperado,obtenido
+        assertEquals(true, pa.getTipo());//esperado,obtenido
+        System.out.println("----Test 4----\n");     	
+    	
+    }
+    
+    @Test
+    public void testIntegracion_RecargoTotalAPagar(){
+    	System.out.println("----Test 5----");
+    	
+    	Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");//selecciono los productos del catálogo
+    	Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+    	
+    	DetallePedido detalle1 = new DetallePedido(p1,1.1);//Selecciono la cantidad indicada de 1.1
+    	DetallePedido detalle2 = new DetallePedido(p2,1.1);
+    	
+    	carrito.add(detalle1);
+    	carrito.add(detalle2);
+    	
+    	System.out.println(carrito.toString());
+    	Pago pa=new Pago();
+    	
+    	pa.crear_pago(true,"");//Pago en efectivo
+    	
+    	Cliente client=new Cliente("Juan", 3, pa);//cliente Juan, del sector 3 (Sur) y pago en efectivo
+    	System.out.println(client.InfoPer());
+    	
+    	DateFormat Horanow = new SimpleDateFormat("HH:mm");
+    	Pedido pedido = new Pedido(detalle1, detalle2, Horanow, client);
+    	
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        System.out.println(pedido.GetRecargo(client,subt));//obtengo el recargo
+        System.out.println(pedido.TotalPedido());//obtengo el total del pedido incluyendo el recargo
+                
+    	System.out.println("----Test 5----\n");
+    }
+    
 
 }
