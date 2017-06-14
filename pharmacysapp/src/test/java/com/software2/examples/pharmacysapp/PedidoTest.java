@@ -132,7 +132,7 @@ public class PedidoTest {
         DetallePedido detail1 = new DetallePedido(product1,1);
         DetallePedido detail2 = new DetallePedido(product2,1);
         carrito.add(detail1);
-        carrito.add(detail1);
+        carrito.add(detail2);
         System.out.println(carrito.toString());
         Pago payment=new Pago();
         payment.crear_pago(true,"");
@@ -160,7 +160,7 @@ public class PedidoTest {
         DetallePedido detail1 = new DetallePedido(product1,1);
         DetallePedido detail2 = new DetallePedido(product2,1);
         carrito.add(detail1);
-        carrito.add(detail1);
+        carrito.add(detail2);
         System.out.println("El usuario da click en 'Visualizar el pedido con los productos agregados'\n");
         System.out.println(carrito.toString());
         System.out.println("El usuario da click en 'Siguiente' e ingresa 'Nombre', 'Sector' y 'Tipo de Pago'");
@@ -178,7 +178,9 @@ public class PedidoTest {
         System.out.println("Subtotal: " + subt);
         System.out.println("Recargo: " + ped.GetRecargo(client, subt));
         System.out.println("Total: " + ped.TotalPedido());
-        assertEquals(11.1,ped.TotalPedido(), 1);
+        assertEquals(12.1,ped.TotalPedido(), 1);
         System.out.println("----Test 5----\n");
     }
 }
+// COMENTARIOS
+// 
