@@ -8,18 +8,11 @@ import com.software2.examples.pharmacysapp.Producto;
 import com.software2.examples.pharmacysapp.DetallePedido;
 import com.software2.examples.pharmacysapp.Pago;  
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -122,6 +115,30 @@ public class PedidoTest {
         System.out.println("El subtotal a pagar es: " + subt);
         assertEquals(true, pa.getTipo());//experado,obtenido
         System.out.println("----Test 3----\n");      
+    }
+    
+    @Test
+    public void testIntegracion_ConfirmarPedido(){
+    	System.out.println("----Test 4----");
+    	Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+    	Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+    	DetallePedido det1 = new DetallePedido(p1,1);
+    	DetallePedido det2 = new DetallePedido(p2,1);
+    	
+    	carrito.add(det1);
+    	carrito.add(det2);
+    	
+    	System.out.println(carrito.toString());
+    	Pago pa = new Pago();
+    	pa.crear_pago(true,"");
+    	
+    	Cliente comprador = new Cliente("Kerly", 2, pa);
+    	
+    	Date fActual = new Date();
+    	Pedido pConfirmar = new Pedido(carrito,fActual,comprador);
+    	
+    	assertEquals("Horario Valido",pConfirmar.ValidHora());
+    	
     }
     
 
