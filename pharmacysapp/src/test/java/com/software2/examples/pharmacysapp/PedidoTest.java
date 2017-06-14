@@ -149,6 +149,26 @@ public class PedidoTest {
         System.out.println("----Test 4----\n");
     }
     
-    
-
+    @Test
+    public void testIntegracion_Pedido_Pago_Recargo(){
+    	System.out.println("----Test 5----");    	
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        DetallePedido detalle1 = new DetallePedido(p1,1);        
+        carrito.add(detalle1);        
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        //Utilizar Hora actual
+        Pedido pedido = new Pedido(carrito, new Date(), client);        
+        String validHora = pedido.ValidHora();
+        System.out.println(validHora);
+        System.out.println("Recargo de " +  pedido.GetRecargo());
+        assertEquals( 2.00, pedido.GetRecargo());
+        System.out.println("----Test 5----\n");
+        }
 }
