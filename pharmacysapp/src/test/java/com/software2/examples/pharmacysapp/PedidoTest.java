@@ -148,8 +148,6 @@ public class PedidoTest {
         Date hora = new Date();
         Pedido pe = new Pedido(carrito, hora ,client);
         //visualizar el pedido con los productos seleccionados.
-        System.out.println("*******Hora del Pedido*****");
-        System.out.println(pe.toString());        
         String resultado = pe.ValidHora();
         assertEquals("Horario disponible", resultado);//experado,obtenido
         System.out.println("----Test 4----\n"); 
