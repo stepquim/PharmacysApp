@@ -137,7 +137,7 @@ public class PedidoTest {
     	Date fActual = new Date();
     	Pedido pConfirmar = new Pedido(carrito,fActual,comprador);
     	
-    	assertEquals("Horario Valido",pConfirmar.ValidHora());
+    	assertEquals("Horario disponible",pConfirmar.ValidHora());
     	
     }
     
