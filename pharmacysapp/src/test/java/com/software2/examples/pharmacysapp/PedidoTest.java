@@ -129,7 +129,7 @@ public class PedidoTest {
        System.out.println("-------test 4-------- ");
        int hora,minutos,segundos;
        Date ahora= new Date();
-       SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss")
+       SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss");
        Producto p = obtener_producto_catalogo(catalogo,"Analgan");
        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
        DetallePedido detalle1 = new DetallePedido(p,1);
@@ -159,7 +159,7 @@ public class PedidoTest {
        System.out.println("-------test 5-------- ");
        int hora,minutos,segundos;
        Date ahora= new Date();
-       SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss")
+       SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss");
        Producto p = obtener_producto_catalogo(catalogo,"Analgan");
        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
        DetallePedido detalle1 = new DetallePedido(p,1);
