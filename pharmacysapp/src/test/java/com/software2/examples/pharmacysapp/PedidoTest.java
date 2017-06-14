@@ -73,12 +73,12 @@ public class PedidoTest {
     @Test
     public void testIntegracion_producto_catalogo() {
         System.out.println("----Test 1----"); 
-        System.out.println("\n(INICIAL) El cat·logo de la farmacia es: " + catalogo.size());
+        System.out.println("\n(INICIAL) El cat√°logo de la farmacia es: " + catalogo.size());
         System.out.println(catalogo.toString());
         Producto producto5 = new Producto("Ciprofloxacina","Medicina",50,15,11.42);
         String resultado = producto5.crear_producto();
         catalogo.add(producto5);
-        System.out.println("\n(FIN) El cat·logo de la farmacia es: " + catalogo.size());
+        System.out.println("\n(FIN) El cat√°logo de la farmacia es: " + catalogo.size());
         System.out.println(catalogo.toString()); 
         
         assertEquals("Se creo el producto exitosamente!", resultado); //experado,obtenido
@@ -124,5 +124,62 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
+    @Test
+	public void testIntegracion_ConfirmarPedido(){
+		//Calendar calendario = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:ii:ss");
+		String stringHora = "15:50:23";
+		Date Hora = sdf.parse(stringHora);
+		System.out.println("----Test 4----");
+		Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+		Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+		DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+		carrito.add(detalle1);
+        carrito.add(detalle2);
+		//visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+		Cliente client=new Cliente("Kerly", 1, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+		Pedido pe = new Pedido(carrito,Hora,client);
+		System.out.println(pe.ValidHora(pe));
+		assertEquals(true, pe.ValidHora(pe));
+		System.out.println("----Test 4----\n");  
+	}
+	
+	@Test
+	//Revisar la funcionalidad de obtener el recargo y total a pagar.
+	//F1: Obtener recargo
+	//F2: Total a pagar
+	//El usuario ingresa al sistema, agrega productos al carrito, visualiza el pedido.Despues da clic en siguiente, donde ngresa nombre, sector, tipo de pago, y da clic en confirmar pedido. Se genera el recargo y el total a pagar.
+	//productos seleccionados=analgan, cantidad=1, pago=efectivo, nombre="Juan",sector=norte, horario=hora actual
+	//El usuario da clic en confirmar pedido, se muestra el sunbtotal, el recargo y el total a pagar.
+	//El usuario da clic en confirmar pedido y se muestra el recargo que tiene junto al total a pagar.
+	public void  testIntegracion_ObtenerRecargo(){
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:ii:ss");
+		String stringHora = "15:50:23";
+		Date Hora = sdf.parse(stringHora);
+		System.out.println("----Test 4----");
+		Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+		DetallePedido detalle1 = new DetallePedido(p1,1);
+		carrito.add(detalle1);
+		Pago pa=new Pago();
+		Cliente client=new Cliente("Juan", 1, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+		double subt=detalle1.subtotal +detalle2.subtotal;
+		System.out.println("El subtotal a pagar es: " + subt);
+		System.out.println("Tiene recargo de $4");
+		Pedido pe = new Pedido(carrito,Hora,client);
+		double recargo = pe.GetRecargo(client,subt);
+		double total = pe.TotalPedido();
+		System.out.println("El total a pagar es: " + total);
+		assertEquals(2,pe.getRecargo(client,subt))
+		System.out.println("----Test 5----\n");  
+	}
 
 }
