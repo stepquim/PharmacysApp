@@ -131,6 +131,7 @@ public class PedidoTest {
         Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
         DetallePedido detalle1 = new DetallePedido(p1,1);
         DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito = new new ArrayList<DetallePedido>();
         carrito.add(detalle1);
         carrito.add(detalle2);
         //visualizar el pedido con los productos seleccionados.
