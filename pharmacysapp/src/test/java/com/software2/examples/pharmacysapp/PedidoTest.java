@@ -124,5 +124,28 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
+    @Test
+    public void testIntegracion_caso4() {
+        System.out.println("----Test 4----");
+        Producto product1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto product2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detail1 = new DetallePedido(product1,1);
+        DetallePedido detail2 = new DetallePedido(product2,1);
+        carrito.add(detail1);
+        carrito.add(detail1);
+        System.out.println(carrito.toString());
+        Pago payment=new Pago();
+        //Ingresa el tipo de pago
+        payment.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, payment);
+        System.out.println(client.InfoPer());
+        System.out.println( payment.validar_pago(payment));
+        double subt=detail1.subtotal +detail2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        Date current = new Date();
+        Pedido ped = new Pedido(carrito, current, client);
+        assertEquals("Horario disponible", ped.ValidHora());
+        System.out.println("----Test 4----\n");
+    }
 
 }
