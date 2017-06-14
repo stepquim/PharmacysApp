@@ -12,7 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -143,8 +142,8 @@ public class PedidoTest {
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
         //Utilizar Hora actual
-        String string = "June 14, 2017 11:00:00";
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy hh:mm:ss", Locale.ENGLISH);
+        String string = " 2017-06-14 11:00:00";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = format.parse(string);
         Pedido pedido = new Pedido(carrito, date, client);        
         String validHora = pedido.ValidHora();
