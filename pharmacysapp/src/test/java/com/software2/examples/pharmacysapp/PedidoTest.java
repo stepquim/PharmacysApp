@@ -141,11 +141,13 @@ public class PedidoTest {
         Cliente client=new Cliente("Kerly", 2, pa);
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
-        
+        // se crea una array de pedidos y se agregan los pedidos
         ArrayList<DetallePedido> pedidos = new ArrayList<DetallePedido>();
-        
-        DateFormat Horanow = new SimpleDateFormat("HH:mm");
+        pedidos.add(detalle1);
+        pedidos.add(detalle2);
         Pedido ped = new Pedido(pedidos, Horanow, client);
+        
+        //se llama al metodo ValidHora
         horaValida = ped.ValidHora();
         
         if horaValida.equals("Horario disponible"){
@@ -153,11 +155,56 @@ public class PedidoTest {
             System.out.println("El subtotal a pagar es: " + subt);
             assertEquals("Horario disponible", horaValida);//experado,obtenido
             System.out.println("----Test 4----\n");    
-        }
-        
-        
-        
+        } 
        
+    }
+    
+    @Test
+    public void testIntegration_Test5(){
+        System.out.println("----Test 5----\n"); 
+        
+        /*
+            //Productos: Analgan, 1 --> precio 2.50
+            //sector: centro
+            //cliente: kerly
+            //pago: efectivo
+            //hora: actual
+        
+        */
+        
+        //se muestra el catalogo
+        System.out.println(catalogo.toString());
+        //se seleccionan productos
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        
+        carrito.add(detalle1);
+        
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        // se crea una array de pedidos y se agregan los pedidos
+        ArrayList<DetallePedido> pedidos = new ArrayList<DetallePedido>();
+        Pedido ped = new Pedido(pedidos, Horanow, client);
+        
+        //se llama al metodo ValidHora
+        horaValida = ped.ValidHora();
+        
+        if horaValida.equals("Horario disponible"){
+            double subt=detalle1.subtotal;
+            System.out.println("El subtotal a pagar es: " + subt);
+            System.out.println("Horario disponible");
+            System.out.println("Total a pagar: " + ped.Total());
+            assertEquals(2.50, ped.Total());//experado,obtenido
+            
+            System.out.println("----Test 5----\n");    
+        } 
+        
     }
     
 
