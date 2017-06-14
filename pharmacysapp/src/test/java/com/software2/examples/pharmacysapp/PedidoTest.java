@@ -73,12 +73,12 @@ public class PedidoTest {
     @Test
     public void testIntegracion_producto_catalogo() {
         System.out.println("----Test 1----"); 
-        System.out.println("\n(INICIAL) El catálogo de la farmacia es: " + catalogo.size());
+        System.out.println("\n(INICIAL) El catalogo de la farmacia es: " + catalogo.size());
         System.out.println(catalogo.toString());
         Producto producto5 = new Producto("Ciprofloxacina","Medicina",50,15,11.42);
         String resultado = producto5.crear_producto();
         catalogo.add(producto5);
-        System.out.println("\n(FIN) El catálogo de la farmacia es: " + catalogo.size());
+        System.out.println("\n(FIN) El catalogo de la farmacia es: " + catalogo.size());
         System.out.println(catalogo.toString()); 
         
         assertEquals("Se creo el producto exitosamente!", resultado); //experado,obtenido
@@ -146,7 +146,7 @@ public class PedidoTest {
        double subt=detalle1.subtotal +detalle2.subtotal;
        System.out.println("El subtotal a pagar es: " + subt);
        //assertEquals(true, pa.getTipo());//experado,obtenido
-       Pedido pe=new Pedido(carrito,formateador.format(ahora),client);
+       Pedido pe=new Pedido(carrito,ahora,client);
        assertEquals("Horario disponible",pe.ValidHora());
        System.out.println("----Test 4----\n");    
      }
@@ -174,7 +174,7 @@ public class PedidoTest {
        double subt=detalle1.subtotal +detalle2.subtotal;
        System.out.println("El subtotal a pagar es: " + subt);
        //assertEquals(true, pa.getTipo());//experado,obtenido
-       Pedido pe=new Pedido(carrito,formateador.format(ahora),client);
+       Pedido pe=new Pedido(carrito,ahora,client);
        pe.GetRecargo(client, subt);
        assertEquals(13.0,pe.TotalPedido(),1);
        System.out.println("----Test 5----\n");  
