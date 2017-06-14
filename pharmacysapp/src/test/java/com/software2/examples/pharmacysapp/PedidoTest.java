@@ -30,6 +30,7 @@ public class PedidoTest {
     
     private static ArrayList<Producto> catalogo;
     private static ArrayList<DetallePedido> carrito;
+    Pedido pedidoTestZurita;
     
     public static void initCatalogo() {
         
@@ -122,6 +123,39 @@ public class PedidoTest {
         System.out.println("El subtotal a pagar es: " + subt);
         assertEquals(true, pa.getTipo());//experado,obtenido
         System.out.println("----Test 3----\n");      
+    }
+    
+    
+    @Test  
+    public void testIntegracion_PedidoPagoHorario() {
+        
+        
+        System.out.println("----Test 1 Zurita----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+       
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago Efectivo
+        pa.crear_pago(true,"");
+        //Cliente Kerly sector Centro
+        Cliente clientZurita=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        //creo un nuevo pedido
+        hora = '15:43'; //hora actual
+        pedidoTestZurita = new Pedido(carrito, hora, clientZurita);
+        //valido e imprime si esta en el horario
+        String mensajePedidoZurita = pedidoTestZurita.ValidHora();
+        String mensajeExperado = "Horario disponible"
+        
+        assertEquals(mensajeExperado, mensajePedidoZurita);//experado,obtenido
+        System.out.println("----Test 1 Zurita----\n");      
     }
     
 
