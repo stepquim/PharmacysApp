@@ -124,5 +124,35 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
-
+    //Test 4
+    @Test  
+    public void testIntegracion_pedido_pago_horario() {
+        System.out.println("----Test 4 Fernando Sanchez----");       
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan"); //simulo que lo agrego al carrito
+        Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco"); //simulo que lo agrego al carrito
+        DetallePedido detalle1 = new DetallePedido(p1,1); //Simulo que selecciono 1
+        DetallePedido detalle2 = new DetallePedido(p2,1); //Simulo que selecciono 1
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        
+        Date hora = new Date();
+        Pedido pe = new Pedido(carrito, hora ,client);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println("*******Hora del Pedido*****");
+        System.out.println(pe.toString());        
+        String resultado = pe.ValidHora();
+        assertEquals("Horario disponible", resultado);//experado,obtenido
+        System.out.println("----Test 4----\n"); 
+    }
+    
 }
