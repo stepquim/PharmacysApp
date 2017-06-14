@@ -129,7 +129,6 @@ public class PedidoTest {
     @Test  
     public void testIntegracion_PedidoPagoHorario() {
         
-        
         System.out.println("----Test 1 Zurita----");      
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
         Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
@@ -159,4 +158,57 @@ public class PedidoTest {
     }
     
 
+    /*
+    *NOMBRE: obtener recargo y total a pagar 
+    *MODULOS: F1: visualizar pedido con los productos del carrito
+    * F2: mostrar resumen de pago mas recargo
+    *DESCRIPCION: el cliente escoge dos productos y los agrega al carrito
+    y luego visualiza el recargo y el valora  pagar 
+    *DATOS DE PRUEBA: productos seleccionados   = Analgan, Diclofenaco
+    *cantidad = 1,1
+    *pago=Efectivo
+    *Nombre=”Kerly”
+    *sector=Centro
+    *horario=16:30
+    *RESUSLTADOS EXPERADOS: recargo de 2
+    *RESULTADOS OBTENIDOS:
+    */
+    
+    @Test  
+    public void testIntegracion_ObtenerRecargoYTotalAPagar() {
+        
+        System.out.println("----Test 2 Zurita----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+       
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago Efectivo
+        pa.crear_pago(true,"");
+        //Cliente Kerly sector Centro
+        Cliente clientZurita=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        //creo un nuevo pedido
+        hora = '15:43'; //hora actual
+        pedidoTestZurita = new Pedido(carrito, hora, clientZurita);
+        
+        double recargoTest = pedidoTestZurita.GetRecargo(clientZurita, subt);
+       ///recargo esperado
+        double testTotalPagar = subt + recargoTest; 
+        double recargoEsperado = 2;
+        double total2 = pedidoTestZurita.TotalPedido();
+        double totalEsperado = 10;
+        ///no se los valores de los medicamnetos
+        assertEquals(totalEsperado, total2);//experado,obtenido
+        System.out.println("----Test 2 Zurita----\n");      
+    }
+    
+    
+    
 }
