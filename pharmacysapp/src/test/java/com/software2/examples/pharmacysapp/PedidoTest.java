@@ -142,8 +142,8 @@ public class PedidoTest {
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
         //Utilizar Hora actual
-        String string = " 2017-06-14 11:00:00";
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String string = " 2017-06-14 11:00";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = format.parse(string);
         Pedido pedido = new Pedido(carrito, date, client);        
         String validHora = pedido.ValidHora();
