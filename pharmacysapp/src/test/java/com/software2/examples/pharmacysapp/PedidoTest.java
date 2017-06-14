@@ -72,6 +72,7 @@ public class PedidoTest {
 
     @Test
     public void testIntegracion_producto_catalogo() {
+        beforeEachTest();
         System.out.println("----Test 1----"); 
         System.out.println("\n(INICIAL) El catálogo de la farmacia es: " + catalogo.size());
         System.out.println(catalogo.toString());
@@ -84,10 +85,12 @@ public class PedidoTest {
         assertEquals("Se creo el producto exitosamente!", resultado); //experado,obtenido
         
         System.out.println("----Test 1----\n"); 
+        afterEachTest();
     }
     
     @Test  
     public void testIntegracion_catalogo_carrito() {
+        beforeEachTest();
         System.out.println("----Test 2----");        
         Producto p = obtener_producto_catalogo(catalogo,"Redoxon"); //simulo que lo agrego al carrito
         DetallePedido detalle1 = new DetallePedido(p,5); //Simulo que selecciono 5
@@ -97,12 +100,14 @@ public class PedidoTest {
         System.out.println(carrito.toString());
         assertEquals(1, carrito.size()); //experado,obtenido
         System.out.println("----Test 2----\n"); 
+        afterEachTest();
     }
     
    
     
     @Test  
     public void testIntegracion_PagoSubtotal() {
+        beforeEachTest();
         System.out.println("----Test 3----");      
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
         Producto p2 = obtener_producto_catalogo(catalogo,"Buscapina");
@@ -121,12 +126,14 @@ public class PedidoTest {
         double subt=detalle1.subtotal +detalle2.subtotal;
         System.out.println("El subtotal a pagar es: " + subt);
         assertEquals(true, pa.getTipo());//experado,obtenido
-        System.out.println("----Test 3----\n");      
+        System.out.println("----Test 3----\n"); 
+        afterEachTest();
     }
     
     //Test 4
     @Test  
     public void testIntegracion_pedido_pago_horario() {
+        beforeEachTest();
         System.out.println("----Test 4 Fernando Sanchez----");       
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan"); //simulo que lo agrego al carrito
         Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco"); //simulo que lo agrego al carrito
@@ -145,12 +152,65 @@ public class PedidoTest {
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
         
-        Date hora = new Date();
-        Pedido pe = new Pedido(carrito, hora ,client);
+        
+        DateFormat Horanow = new SimpleDateFormat("HH:mm");
+        Date hora = new Date("16:16");
+        Pedido pe = new Pedido(carrito, hora, client);
         //visualizar el pedido con los productos seleccionados.
         String resultado = pe.ValidHora();
         assertEquals("Horario disponible", resultado);//experado,obtenido
         System.out.println("----Test 4----\n"); 
+        afterEachTest();
     }
+    
+    //Test 5
+    /*
+    Descripcion: Revisar la funcionalidad obtener recargo y total a pagar
+    Modulo: recargo, total a pagar
+    Descripcion: El usuario ingresa sus datos, añade productos al carrito ingresa 
+        sus datos del sector se verifica si hay recargo por sector u horario
+    Datos de prueba: 
+        productos selccionados = analgan, buscapina
+        cantidad = 1, 1
+        pago = efectio
+        nombre = fernando
+        Sector = norte
+    Resultado esperado: 
+    Resultado obtenido:
+    
+    */
+    @Test  
+    public void testIntegracion_recargo_total_pago() {
+        beforeEachTest();
+        System.out.println("----Test 5----");       
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan"); //simulo que lo agrego al carrito
+        Producto p2 = obtener_producto_catalogo(catalogo,"Buscapina"); //simulo que lo agrego al carrito
+        DetallePedido detalle1 = new DetallePedido(p1,1); //Simulo que selecciono 1
+        DetallePedido detalle2 = new DetallePedido(p2,1); //Simulo que selecciono 1
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Fernando", 2, pa);
+        
+        DateFormat Horanow = new SimpleDateFormat("HH:mm");
+        Date hora = new Date("16:16");  
+        Pedido pe = new Pedido(carrito, hora, client);
+        
+        
+        //visualizar el pedido con los productos seleccionados.
+        double subt =detalle1.subtotal +detalle2.subtotal;
+        double resultado = (pe.GetRecargo(client, subt)); 
+        double ess = 4;
+        
+        assertEquals(ess, resultado);//experado,obtenido
+        System.out.println("----Test 4----\n"); 
+        afterEachTest();
+    }
+    
     
 }
