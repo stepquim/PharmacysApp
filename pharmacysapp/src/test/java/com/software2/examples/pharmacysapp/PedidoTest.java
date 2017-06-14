@@ -155,7 +155,38 @@ public class PedidoTest {
     }
     
 
+    /*
+    ID: 5
+    Nombre: Chequear entre la funcionalidad 
+            de Confirmar pedido, tipo de pago, 
+            horario de entrega y Generar 
+            Resumen de pago
+    Modulos:
+            F1:  Visualizar pedido con 
+               los productos 
+               agregados al carrito.
+            F2: Confirmar pedido. 
+            F3: Tipo de Pago 
+            F4: Horario de entrega
+            F5: Generar resumen de pago
+    Descripcion:
+            El usuario ingresa al sistema, agrega los productos al carrito, visualiza el pedido.
+            Después da clic en siguiente, donde ingresa nombre, sector, tipo de pago y da clic en Confirmar pedido. 
+            El sistema compara si el pedido se realizó dentro del horario de atención.
+            Luego, el sistema muestra el resumen del pago.
+    Datos de prueba:
+        productos seleccionados = Analgan, Diclofenaco 
+        Cantidad = 1,1
+        pago=Efectivo 
+        Nombre=”Kerly” 
+        sector=Centro 
+        Horario=hora actual
+    Resultado esperado:}
+        El usuario da clic en Confirmar Pedido y se muestra el resumen del pago.
+    Resultado obtenido:
+        El usuario da clic en Confirmar Pedido y se muestra el resumen de pago
 
+    */
     @Test
     public void testIntegracion_ConfirmarPedido_TipoPago_Horario_Resumen() {
         System.out.println("----Test 5----");      
