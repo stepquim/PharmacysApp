@@ -169,9 +169,12 @@ public class PedidoTest {
     
     El usuario da click en confirmar el pedido Y se muetsra su total a pagar
     */
+    //a
     @Test
     public void testIntegracion_Test5(){
         System.out.println("----Test 5----");
+        
+        
         Date hora=new Date();
         //inicio del test
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
