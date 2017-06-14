@@ -152,5 +152,40 @@ public class PedidoTest {
         System.out.println("----Test 4----\n");      
     }
     
+    /*
+    TEST 5
+    MODULOS: F1: Visualizar pedido con los productos agregados al carrito.  F1:Obtener Recargo y F2:Total a Pagar
+    DESCRIPCION: 
+    */
+    @Test  
+    public void testIntegracion_ObtenerRecargo() {
+        System.out.println("----Test 5----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());  
+        Date hora = new Date();
+        Pedido pedido1 = new Pedido(carrito, hora, client);
+        
+        
+        //System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        //assertEquals(true, pa.getTipo());//experado,obtenido
+        System.out.println( pedido1.GetRecargo(client, subt));
+        System.out.println("----Test 5----\n");      
+    }
+    
+    
+    
 
 }
