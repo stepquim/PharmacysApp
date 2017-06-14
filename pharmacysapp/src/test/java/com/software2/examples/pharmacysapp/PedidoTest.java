@@ -145,7 +145,7 @@ public class PedidoTest {
         Pago pa=new Pago();
         //Ingresa el tipo de pago
         pa.crear_pago(true,"");
-        Cliente client=new Cliente("Kerly", 1, pa);
+        Cliente client=new Cliente("Kerly", 2, pa);
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
         double subt=detalle1.subtotal +detalle2.subtotal;
@@ -156,6 +156,9 @@ public class PedidoTest {
         System.out.println("----Test 4----\n");  
     }
     
+    /*
+     * Uso de cliente Juan, Sector Norte
+     * */
     @Test  
     public void testIntegracion_RecargoYTotal() {
         System.out.println("----Test 5----");      
@@ -171,7 +174,7 @@ public class PedidoTest {
         Pago pa=new Pago();
         //Ingresa el tipo de pago
         pa.crear_pago(true,"");
-        Cliente client=new Cliente("Kerly", 1, pa);
+        Cliente client=new Cliente("Juan", 1, pa);
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
         double subt=detalle1.subtotal +detalle2.subtotal;
@@ -181,7 +184,7 @@ public class PedidoTest {
         System.out.println("Recargo: " + recargo);
         double total = pedido.TotalPedido();
         System.out.println("Total: " + total);
-        assertEquals(subt + recargo, total);//experado,obtenido
+        assertEquals(subt + recargo, total, 0.01);//experado,obtenido
         System.out.println("----Test 5----\n");  
     }
 }
