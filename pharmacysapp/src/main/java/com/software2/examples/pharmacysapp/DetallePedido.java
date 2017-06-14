@@ -20,17 +20,25 @@ public class DetallePedido {
         this.cantidad = cantidad;
         this.subtotal=0;
     }
+    //Funcion que retorna el tipo de dato producto
+    public Producto getP() {
+        return p;
+    }
+    //Funcion que retorna la cantidad que solicito de un producto.
+    public int getCantidad() {
+        return cantidad;
+    }
     
-    
+    //Funcion que retorna el subtotal de un producto.
     public double SubtotalDeProducto(){
-            return (this.p.precio)*(this.cantidad);
+        this.subtotal=(this.p.getPrecio())*(this.getCantidad());
+            return this.subtotal;
     }
    
-
+    //Funcion que retorna el detalle del pedido: producto, cantidad que pidió y el subtotal.
     @Override
     public String toString() {
-        subtotal= this.SubtotalDeProducto();
-        return "DetallePedido{" + "p=" + p + ", cantidad=" + cantidad +", subtotal= "+ subtotal + "}";
+        return "DetallePedido{" + "p=" + this.getP() + ", cantidad=" + this.getCantidad() +", subtotal= "+ this.SubtotalDeProducto() + "}";
     }
     
     

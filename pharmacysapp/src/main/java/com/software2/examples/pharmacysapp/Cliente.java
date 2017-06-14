@@ -19,11 +19,11 @@ public class Cliente {
         this.sector = sector;
         this.pago = pago;
     }
-
+    //Funcion que retorna el nombre del cliente.
     public String getName() {
         return Name;
     }
-    
+    //Funcion que retorna el sector donde vive el cliente.
     public String GetSector(){
          switch (this.sector) {
              case 1:
@@ -37,11 +37,11 @@ public class Cliente {
          }
          return null;
     }
-    
+    //Funcion que retorna la información del cliente.
     public String InfoPer(){
         return "Usted ingreso la siguiente información" + "\nNombre:" + Name + "\nSector=" + sector;
     }
-
+    //Funcion que retorna que la informacion ingresada fue incorrecta.
     @Override
     public String toString() {
         return "Información correcta";

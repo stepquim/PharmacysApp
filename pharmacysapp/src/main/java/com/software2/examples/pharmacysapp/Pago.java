@@ -22,6 +22,8 @@ public class Pago {
      this.numeroTarjeta = tarjeta;
     }
     
+
+//Funcion que ingresa un tipo de dato Pago y retorna un String que indica el tipo de pago del cliente.
     public String validar_pago(Pago p){
         if (p.getTipo().equals(true)){
             return "Pago en efectivo";
@@ -37,18 +39,15 @@ public class Pago {
             return "Tipo de pago incorrecto"; 
     }
 
-
+    //Funcion que retorna el si el pago fue en efectivo(true) o tarjeta(false).
     public Boolean getTipo() {
         return tipo;
     }
-
+    //Funcion que retorna un String que contiene el número de tajeta de crédito.
     public String getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
-    Object stringPago() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     
 }

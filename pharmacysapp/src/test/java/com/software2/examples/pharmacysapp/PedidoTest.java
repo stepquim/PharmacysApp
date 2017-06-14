@@ -73,12 +73,12 @@ public class PedidoTest {
     @Test
     public void testIntegracion_producto_catalogo() {
         System.out.println("----Test 1----"); 
-        System.out.println("(INICIAL) El catálogo de la farmacia es: " + catalogo.size());
+        System.out.println("\n(INICIAL) El catálogo de la farmacia es: " + catalogo.size());
         System.out.println(catalogo.toString());
         Producto producto5 = new Producto("Ciprofloxacina","Medicina",50,15,11.42);
         String resultado = producto5.crear_producto();
         catalogo.add(producto5);
-        System.out.println("(FIN) El catálogo de la farmacia es: " + catalogo.size());
+        System.out.println("\n(FIN) El catálogo de la farmacia es: " + catalogo.size());
         System.out.println(catalogo.toString()); 
         
         assertEquals("Se creo el producto exitosamente!", resultado); //experado,obtenido
@@ -110,6 +110,7 @@ public class PedidoTest {
         DetallePedido detalle2 = new DetallePedido(p2,1);
         carrito.add(detalle1);
         carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
         System.out.println(carrito.toString());
         Pago pa=new Pago();
         //Ingresa el tipo de pago
@@ -119,7 +120,7 @@ public class PedidoTest {
         System.out.println( pa.validar_pago(pa));
         double subt=detalle1.subtotal +detalle2.subtotal;
         System.out.println("El subtotal a pagar es: " + subt);
-        assertEquals(true, pa.getTipo());
+        assertEquals(true, pa.getTipo());//experado,obtenido
         System.out.println("----Test 3----\n");      
     }
     

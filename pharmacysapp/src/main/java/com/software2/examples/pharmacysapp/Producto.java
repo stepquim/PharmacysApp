@@ -26,22 +26,29 @@ public class Producto {
         this.precio = precio;
     }
     
-    
+    //Funcion que valida si el producto está fuera de stock de ser asi retorna 0, si esta dentro de stock retorna 1.
     public int validar_stock(){
         if (this.getStock() == 0 || this.getStock()< 0 || this.getStock() > 100)
             return 0;
         return 1;
     }
-
+    //Funcion que retorna el número de stock del producto.
     public int getStock() {
         return stock;
     }
-
+    
+    
+    //Funcion que retorna el nombre del producto
     public String getNombre() {
         return nombre;
     }
+    //Funcion que retorna el precio del producto
+    public double getPrecio() {
+        return precio;
+    }
     
     
+    //Funcion que retorna un String indicando si el producto se creo correctamente.
     public String crear_producto(){
         if (this.validar_stock() == 1) {
             System.out.println("Usted ha creado:" + this.toString());
@@ -51,8 +58,8 @@ public class Producto {
         return "No se pudo crear el producto.Verifique el stock ingresado.";
     }
     
-    
-    @Override //visualiza catalogo
+    //Funcion que retorna un String, donde muestra el nombre del producto.
+    @Override //Esta permite visualizar el catalogo.
     public String toString() {
         return "Producto{" + "nombre=" + nombre + '}';
     }
