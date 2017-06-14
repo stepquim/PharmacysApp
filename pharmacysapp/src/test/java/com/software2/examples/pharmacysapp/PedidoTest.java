@@ -123,6 +123,26 @@ public class PedidoTest {
         assertEquals(true, pa.getTipo());//experado,obtenido
         System.out.println("----Test 3----\n");      
     }
+    @Test
+    public void testIntegracion_Test4(){
+        System.out.println("----Test 4----");
+        //inicio del test
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        System.out.println(carrito.toString());//visualiza el pedido
+        
+        //ingreso el metodo de pago
+        Pago pa=new Pago();
+        pa.crear_pago(true,"");//tipo de pago definido es efectivo, porlo tanto se ingresa una variable boolean de tipo true
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        
+    }
     
 
 }
