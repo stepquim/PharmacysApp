@@ -229,7 +229,7 @@ actual
         System.out.println("el subTotal es : " + subt);
         
         System.out.println("El pedido tiene un valor de : " + pedido.TotalPedido());
-        assertEquals( 13.0 , pedido.TotalPedido());//experado,obtenido
+        assertEquals( 13.00, pedido.TotalPedido(),0.0f);//experado,obtenido
         System.out.println("----Test 4----\n"); 
     
     }
