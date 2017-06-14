@@ -180,7 +180,7 @@ public class PedidoTest {
         
         System.out.println("El recargo es: " + pedido.GetRecargo(client, subt));
         System.out.println( "El total del pedido es: " + pedido.TotalPedido());
-
+//
         assertEquals(4.50, pedido.TotalPedido());//experado,obtenido
         System.out.println("----Test 5----\n");      
     }
