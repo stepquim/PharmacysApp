@@ -157,7 +157,7 @@ public class PedidoTest {
     }
     
     @Test  
-    public void testIntegracion_PagoSubtotalHorario() {
+    public void testIntegracion_RecargoYTotal() {
         System.out.println("----Test 5----");      
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
         Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
@@ -178,9 +178,10 @@ public class PedidoTest {
         System.out.println("El subtotal a pagar es: " + subt);
         Pedido pedido = new Pedido(carrito, new Date(), client);
         double recargo = pedido.GetRecargo(client, subt);
-        
-        assertEquals("Horario disponible", pedido.ValidHora());//experado,obtenido
-        System.out.println(pedido.ValidHora());
+        System.out.println("Recargo: " + recargo);
+        double total = pedido.TotalPedido();
+        System.out.println("Total: " + total);
+        assertEquals(subt + recargo, total);//experado,obtenido
         System.out.println("----Test 5----\n");  
     }
 }
