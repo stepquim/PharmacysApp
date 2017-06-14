@@ -24,7 +24,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Stephany
+ * @author ISRAEL ZURITA
  */
 public class PedidoTest {
     
