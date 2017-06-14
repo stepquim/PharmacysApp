@@ -223,6 +223,8 @@ public class PedidoTest {
         r=carrito.GetRecargo(client, total);
         myTotal = total + r;
 
+        System.out.println("El total a pagar es -> " + myTotal.toString());
+
         // Comparo el total generado con el que calcule manualmente
         assertEquals(totalDelPedido, myTotal);//experado,obtenido
         System.out.println("----Test 5----\n");      
