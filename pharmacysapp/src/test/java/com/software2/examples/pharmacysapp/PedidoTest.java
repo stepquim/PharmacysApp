@@ -198,7 +198,7 @@ public class PedidoTest {
         System.out.println("El recargo del pedido es: " + recargo);  
         double tot = pe.TotalPedido();    
         System.out.println("El Total del pedido es: " + tot); 
-        assertEquals(16.1, tot);//experado,obtenido
+        assertEquals(13, tot);//experado,obtenido
         System.out.println("----Test 5----\n");      
     }
     
