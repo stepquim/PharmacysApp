@@ -143,7 +143,7 @@ public class PedidoTest {
         System.out.println("El subtotal a pagar es: " + subt);
         Date current = new Date();
         Pedido ped = new Pedido(carrito, current, client);
-        assertEquals("Horario disponible", ped.ValidHora());
+        assertEquals("Fuera de Horario disponible", ped.ValidHora());
         System.out.println("----Test 4----\n");
     }
     
@@ -183,4 +183,12 @@ public class PedidoTest {
     }
 }
 // COMENTARIOS
-// 
+// Considero que el codigo esta debidamente documentado. Es facil de implementar un caso de prueba.
+// MODULOS: Confirmar pedido, Tipo de Pago, Horario de Entrega, Resumen de Pago
+// DESCRIPCION:
+// El usuario ingresa al sistema, da click en 'Ver Catalogo', agrega productos al carrito y visualiza el pedido.
+// Luego, el usuario da click en 'Siguiente' e ingresa 'Nombre', 'Sector' y 'Tipo de Pago.
+// Finalmente el usuario da click en 'Confirmar Pedido'. El sistema compara si el pedido se realiza dentro del horario de atencion, calcula el recargo y el total a pagar.
+// DATOS: productos=Analgan, Buscapina, cantidad=1,1, pago=efectivo, nombre=Ivan, sector=Norte, horario=hora actual
+// ESPERADO: El usuario confirma el pedido y el sistema le muestra el recargo y el total a pagar
+// OBTENIDO: El sistema le muestra el recargo y el total a pagar
