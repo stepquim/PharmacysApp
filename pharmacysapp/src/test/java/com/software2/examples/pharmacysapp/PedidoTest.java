@@ -141,7 +141,7 @@ public class PedidoTest {
         System.out.println(carrito.toString());
         
         Pedido pedido = new Pedido(carrito, new java.util.Date(), cliente);
-        
+        System.out.println(pedido.ValidHora());
         assertEquals("Horario disponible", pedido.ValidHora());//experado,obtenido
         System.out.println("----Test 4----\n");      
     }
