@@ -145,7 +145,11 @@ public class PedidoTest {
         ArrayList<DetallePedido> pedidos = new ArrayList<DetallePedido>();
         pedidos.add(detalle1);
         pedidos.add(detalle2);
-        Pedido ped = new Pedido(pedidos, Horanow, client);
+        
+        DateFormat hora = new SimpleDateFormat("HH:mm");
+        Pedido ped = new Pedido(pedidos, hora, client);
+        
+        
         
         //se llama al metodo ValidHora
         horaValida = ped.ValidHora();
@@ -191,9 +195,11 @@ public class PedidoTest {
         // se crea una array de pedidos y se agregan los pedidos
         ArrayList<DetallePedido> pedidos = new ArrayList<DetallePedido>();
         Pedido ped = new Pedido(pedidos, Horanow, client);
+        pedidos.add(detalle1);
         
         //se llama al metodo ValidHora
-        horaValida = ped.ValidHora();
+        DateFormat hora = new SimpleDateFormat("HH:mm");
+        Pedido ped = new Pedido(pedidos, hora, client);
         
         if horaValida.equals("Horario disponible"){
             double subt=detalle1.subtotal;
