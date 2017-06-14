@@ -134,8 +134,6 @@ public class PedidoTest {
        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
        DetallePedido detalle1 = new DetallePedido(p,1);
        DetallePedido detalle2 = new DetallePedido(p2,1);
-       Calendar calendario= Calendar.getInstance();
-       Calendar calendario = new GregorianCalendar(); 
        carrito.add(detalle1);
        carrito.add(detalle2);
        //visualiza el pedido
@@ -164,8 +162,6 @@ public class PedidoTest {
        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
        DetallePedido detalle1 = new DetallePedido(p,1);
        DetallePedido detalle2 = new DetallePedido(p2,1);
-       Calendar calendario= Calendar.getInstance();
-       Calendar calendario = new GregorianCalendar(); 
        carrito.add(detalle1);
        carrito.add(detalle2);
        //visualiza el pedido
