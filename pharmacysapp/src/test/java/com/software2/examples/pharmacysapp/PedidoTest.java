@@ -7,6 +7,7 @@ package com.software2.examples.pharmacysapp;
 import com.software2.examples.pharmacysapp.Producto;
 import com.software2.examples.pharmacysapp.DetallePedido;
 import com.software2.examples.pharmacysapp.Pago;  
+import com.software2.examples.pharmacysapp.Pedido;  
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -82,7 +83,7 @@ public class PedidoTest {
         System.out.println(catalogo.toString()); 
         
         assertEquals("Se creo el producto exitosamente!", resultado); //experado,obtenido
-        
+
         System.out.println("----Test 1----\n"); 
     }
     
@@ -124,5 +125,27 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
-
+    @Test  
+    public void testIntegracion_confirmarPagoHorario() {
+        System.out.println("----Test 4----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        Pedido pedido=new Pedido(carrito,"09:30",client);
+        assertEquals("Horario disponible", pedido.ValidHora();
+        System.out.println("----Test 4----\n");      
+    }
 }
