@@ -28,7 +28,11 @@ import org.junit.Test;
  */
 public class PedidoTest {
     
-    private static ArrayList<Producto> catalogo;
+    public @interface Before {
+
+	}
+
+	private static ArrayList<Producto> catalogo;
     private static ArrayList<DetallePedido> carrito;
     
     public static void initCatalogo() {
@@ -124,5 +128,30 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
-
+    @Test  
+    public void testIntegracion_Horario() {
+        System.out.println("----Test 4----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        //Valida horario de atención
+        String lugar = client.GetSector();
+        Date date = new Date();
+        long t1 = date.getTime();
+        boolean horarioPermitido = false;
+        System.out.println("hora actual: " + t1);
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        assertEquals(true, horarioPermitido);//experado,obtenido
+        System.out.println("----Test 4----\n");      
+    }
 }
