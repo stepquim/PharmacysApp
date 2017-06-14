@@ -157,7 +157,7 @@ public class PedidoTest {
 
 
     @Test
-    public void testIntegracion_ConfirmarPedido_TipoPago_Horario() {
+    public void testIntegracion_ConfirmarPedido_TipoPago_Horario_Resumen() {
         System.out.println("----Test 5----");      
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
         Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
