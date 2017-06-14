@@ -147,7 +147,6 @@ public class PedidoTest {
         Date dt = new Date();  // current time
         Calendar calendar = GregorianCalendar.getInstance();
         calendar.setTime(dt);   // assigns calendar to given date 
-        int hour = calendar.get(Calendar.HOUR_OF_DAY); // gets hour in 24h format
         ArrayList<DetallePedido> detped = new ArrayList<DetallePedido>();
         detped.add(detalle1);
         detped.add(detalle2);
@@ -193,7 +192,7 @@ public class PedidoTest {
         ArrayList<DetallePedido> detped = new ArrayList<DetallePedido>();
         detped.add(detalle1);
         detped.add(detalle2);
-        Pedido pe = new Pedido(detped, dt, client);
+        Pedido pe = new Pedido(carrito, dt, client);
         
         double recargo = pe.GetRecargo(client, subt);        
         System.out.println("El recargo del pedido es: " + recargo);  
