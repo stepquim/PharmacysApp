@@ -167,9 +167,26 @@ public class PedidoTest {
         double subt=detalle1.subtotal +detalle2.subtotal;
         System.out.println("El subtotal a pagar es: " + subt);
         double recargo = pedido.GetRecargo(client,subt);
-        assertEquals(2.00, recargo);//esperado,obtenido
+        double recargoEsperado = 2.00;
+        assertEquals(recargoEsperado, recargo);//esperado,obtenido
         double total = recargo + subt;
         System.out.println("El total con recargo es: " + total);
         System.out.println("----Test 5----\n");      
     }
+    /*
+    id: 5,
+    Nombre:  Revisar la funcionalidad de  obtener  el recargo y total a pagar
+    Funcionalidades/Módulos: F1: Ver carrito, F2: Confirmar pedido, F3: Recargo
+    Descripción: El usuario visualiza los productos en el carrito. Después     da     clic     en siguiente, donde ingresa nombre, sector,  tipo  de pago y     da     clic     en Confirmar pedido. De acuerdo al total del pago se realiza el recargo. 
+    Datos de prueba:productos seleccionados   = Analgan, Buscapina; cantidad = 1,1; pago=Efectivo;Nombre=”Pedro”;sector=Centro; horario=hora actual 
+    Resultados esperados: El usuario da clic en Confirmar Pedido, se muestra el recargo que tiene su pedido y el total.
+    Resultados obtenidos: El usuario da clic en Confirmar Pedido, se muestra el recargo que tiene su pedido y el total.
+         
+
+    */
+
+    //COMENTARIOS
+    //Mejoras:
+    //Era confuso encontrar en qué parte se validaba la hora, ya que yo estaba buscando los horarios relacionados con los centros, mas no la validación en los pedidos.
+
 }
