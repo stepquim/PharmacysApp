@@ -152,8 +152,9 @@ public class PedidoTest {
         detped.add(detalle1);
         detped.add(detalle2);
         Pedido pe = new Pedido(detped, dt, client);
-        System.out.println(pe.ValidHora());
-        assertEquals("Horario disponible", pe.ValidHora());//experado,obtenido
+        String hcomp = pe.ValidHora();
+
+        assertEquals("Horario disponible", hcomp.toString());
         System.out.println("----Test 4----\n");      
     }
     
