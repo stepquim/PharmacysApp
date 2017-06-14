@@ -128,7 +128,7 @@ public class PedidoTest {
 
     @Test
     public void testIntegracion_ConfirmarPedido_TipoPago_Horario() {
-        System.out.println("----Test 4----");      
+        System.out.println("----Test 4 (Adams)----");      
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
         Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
         DetallePedido detalle1 = new DetallePedido(p1,1);
@@ -156,7 +156,7 @@ public class PedidoTest {
     
 
     /*
-    ID: 5
+    ID:     5
     Nombre: Chequear entre la funcionalidad 
             de Confirmar pedido, tipo de pago, 
             horario de entrega y Generar 
@@ -175,21 +175,20 @@ public class PedidoTest {
             El sistema compara si el pedido se realizó dentro del horario de atención.
             Luego, el sistema muestra el resumen del pago.
     Datos de prueba:
-        productos seleccionados = Analgan, Diclofenaco 
-        Cantidad = 1,1
-        pago=Efectivo 
-        Nombre=”Kerly” 
-        sector=Centro 
-        Horario=hora actual
-    Resultado esperado:}
-        El usuario da clic en Confirmar Pedido y se muestra el resumen del pago.
+            productos seleccionados = Analgan, Diclofenaco 
+            Cantidad = 1,1
+            pago=Efectivo 
+            Nombre=”Kerly” 
+            sector=Centro 
+            Horario=hora actual
+    Resultado esperado:
+            El usuario da clic en Confirmar Pedido y se muestra el resumen del pago.
     Resultado obtenido:
-        El usuario da clic en Confirmar Pedido y se muestra el resumen de pago
-
+            El usuario da clic en Confirmar Pedido y se muestra el resumen de pago
     */
     @Test
     public void testIntegracion_ConfirmarPedido_TipoPago_Horario_Resumen() {
-        System.out.println("----Test 5----");      
+        System.out.println("----Test 5 (Adams)---");      
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
         Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
         DetallePedido detalle1 = new DetallePedido(p1,1);
