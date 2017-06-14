@@ -124,5 +124,85 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
-
+    @Test  
+    public void testIntegracion_verHora() {
+        System.out.println("----Test 4----");      
+        Date hora;
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Buscapina");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        
+        Pedido pedido= new Pedido(carrito, hora, client);
+        assertEquals("Horario disponible", pedido.ValidHora); //experado,obtenido
+        System.out.println("----Test 4----\n");      
+    }
+    
+    @Test  
+    /*
+     * Caso de prueba 5
+     * Nombre: Revisar la funcionalidad de obtener  el recargo y total a pagar.
+     * Módulos:
+     * 			f1: ver catalogo
+     * 			f2: obtener producto catalogo
+     * 			f3: visualizar el pedido con los productos agregados al carrito
+     * 			f4: confirmar perdido
+     * 			f5: tipo de pago
+     * 			f6: ver recargo
+     * 			f7: ver total
+     * Datos de prueba:
+     * 			productos seleccionados = Analgan, Buscapina
+     * 			cantidad = 1, 1 
+     * 			pago= efectivo
+     * 			Nombre=”Kerly”
+     * 			Sector=Centro
+     * Resultados esperados: el usuario visualiza los productos, selecciona los que desee, confirma el pedido, pone el tipo de pago, ve su recargo si tiene uno, y ve el total a pagar.
+     * Resultados obtenidos: el usuario da click en confirmar pedido, ve su recargo y total a pagar.
+     * 	
+     * */
+    public void testIntegracion_totalAPagar() {
+        System.out.println("----Test 5----");      
+        Date hora;
+        System.out.println("\n(INICIAL) El catálogo de la farmacia es: " + catalogo.size());
+        System.out.println(catalogo.toString());
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Buscapina");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        
+        Pedido pedido= new Pedido(carrito, hora, client);
+        
+        double recargo = pedido.GetRecargo(client, subt);
+        System.out.println("El recargo es: " + recargo);
+        total = pedido.recargo + subt;
+        System.out.println("El total a pagar es: " + total);
+        pedido.setTotal(total);
+        
+        assertEquals(0, pedido.total); //experado,obtenido
+        System.out.println("----Test 5----\n");      
+    }
 }
