@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -124,5 +125,81 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
+    @Test  
+    public void testIntegracion_ConfirmarPedido() {
+        System.out.println("----Test 4----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        Date dt = new Date();  // current time
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTime(dt);   // assigns calendar to given date 
+        int hour = calendar.get(Calendar.HOUR_OF_DAY); // gets hour in 24h format
+        ArrayList<DetallePedido> detped = new ArrayList<DetallePedido>();
+        detped.add(detalle1);
+        detped.add(detalle2);
+        Pedido pe = new Pedido(detped, dt, client);
+        System.out.println(pe.ValidHora());
+        assertEquals("Horario disponible", pe.ValidHora());//experado,obtenido
+        System.out.println("----Test 4----\n");      
+    }
+    
+    /*
+    Nombre                      Revisar la funcionalidad de obtener el recargo y total a pagar
+    Funcionalidades/Modulos	F1. Obtener el Recargo      F2. Total a Pagar
+    Descripcion                 El usuario ingresa al sistema, agrega los productos al carrito, visualiza el pedido. Despues da clic en siguiente, donde ingresa nombre, sector, tipo de pago y da click en confirmar pedido. Luego se obtiene el recargo del pedido y se muestra el total a pagar.
+    Datos de Prueba             productos seleccionados = analgan, diclofenaco. Cantidad = 1,1. Pago = Efectivo. Nombre = Kerly. Sector = Centro. Horario = hora actual. 	
+    Resultados Esperados	El usuario da click en confirmar pedido y se muestra el recargo del pedido y el total a pagar.	
+    Resultados Obtenidos        El usuario dio click en confirmar pedido y se muestro el recargo del pedido y el total a pagar.
+    */
 
+    @Test  
+    public void testIntegracion_TotalAPagar() {
+        System.out.println("----Test 5----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        Date dt = new Date();  // current time
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTime(dt);   // assigns calendar to given date 
+        int hour = calendar.get(Calendar.HOUR_OF_DAY); // gets hour in 24h format
+        ArrayList<DetallePedido> detped = new ArrayList<DetallePedido>();
+        detped.add(detalle1);
+        detped.add(detalle2);
+        Pedido pe = new Pedido(detped, dt, client);
+        
+        double recargo = pe.GetRecargo(client, subt);        
+        System.out.println("El recargo del pedido es: " + recargo);  
+        double tot = pe.TotalPedido();    
+        System.out.println("El Total del pedido es: " + tot); 
+        assertEquals(16.1, tot);//experado,obtenido
+        System.out.println("----Test 5----\n");      
+    }
+    
 }
