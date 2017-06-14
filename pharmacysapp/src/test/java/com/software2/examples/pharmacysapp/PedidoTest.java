@@ -143,10 +143,33 @@ public class PedidoTest {
         System.out.println( pa.validar_pago(pa));
         double subt=detalle1.subtotal +detalle2.subtotal;
         Pedido pe = new Pedido(carrito, new Date(),client);
-        System.out.println("Horario");
-        assertEquals(true, pe.ValidHora());//esperado,obtenido
+        System.out.println(pe.ValidHora());//esperado,obtenido
+        assertEquals(true, pa.getTipo());
         System.out.println("----Test 4----\n");      
     }
-
+    
+     @Test  
+    public void testIntegracion_Test5() {
+        System.out.println("----Test 5----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Redoxon");   //en vez de diclofenaco
+        Producto p2 = obtener_producto_catalogo(catalogo,"Analgan");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        Pedido pe = new Pedido(carrito, new Date(),client);
+        System.out.println(pe.ValidHora());//esperado,obtenido
+        assertEquals(true, pa.getTipo());
+        System.out.println("----Test 5----\n");      
+    }
  
 }
