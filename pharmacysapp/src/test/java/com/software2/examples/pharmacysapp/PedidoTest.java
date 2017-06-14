@@ -149,6 +149,21 @@ public class PedidoTest {
         System.out.println("----Test 4----\n");
     }
     
+    /*
+     *Nombre: Revisar la funcionalidad de obtener el recargo y total a pagar. 
+     * Funcionalidades/Módulos
+     * F1: Confirmar Pedido. F2: Horario de Entrega. F3: Total a Pagar
+     * Descripción
+     * El usuario ingresa al sistema, agrega los productos al carrito, visualiza el pedido. 
+     * Después da clic ensiguiente, donde ingresa nombre, sector, tipo de pago y da clic en Confirmar pedido. 
+     * Datos de prueba
+     * productos seleccionados = Analgan, cantidad = 1, pago=Efectivo, Nombre=”Kerly”, sector=Centro, horario=hora actual
+     * Resultados esperados
+     * El usuario da clic en Confirmar Pedido y se muestra que tiene recargo 
+     * Resultados obtenidos
+     * El usuario da clic en Confirmar Pedido y se muestra que tiene recargo 
+     */
+    
     @Test
     public void testIntegracion_Pedido_Pago_Recargo(){
     	System.out.println("----Test 5----");    	
