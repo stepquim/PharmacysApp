@@ -167,7 +167,7 @@ public class PedidoTest {
     el usuario da click en confirmar el pedido y se muestra su recargo y su total a pagar
     
     
-    El usuario da click en confirmar el pedido y se muestra su recargo y su total a pagar
+    El usuario da click en confirmar el pedido Y se muetsra su total a pagar
     */
     @Test
     public void testIntegracion_Test5(){
@@ -193,6 +193,7 @@ public class PedidoTest {
         System.out.println(pedido.ValidHora());
         double subtotal=detalle1.SubtotalDeProducto() + detalle2.SubtotalDeProducto();
         double recargo= 0.0;
+        System.out.println(pedido.TotalPedido());
         
         assertEquals(13.0,pedido.TotalPedido(),1);
         
