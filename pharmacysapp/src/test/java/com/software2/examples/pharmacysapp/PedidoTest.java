@@ -128,10 +128,10 @@ public class PedidoTest {
     public void testIntegracion_PagoSubtotalHorario() {
         System.out.println("----Test 4----");      
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
-        Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
         DetallePedido detalle1 = new DetallePedido(p1,1);
         DetallePedido detalle2 = new DetallePedido(p2,1);
-        carrito = new new ArrayList<DetallePedido>();
+        carrito = new ArrayList<DetallePedido>();
         carrito.add(detalle1);
         carrito.add(detalle2);
         //visualizar el pedido con los productos seleccionados.
