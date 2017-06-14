@@ -176,4 +176,21 @@ public class PedidoTest {
         System.out.println("El total a pagar es: " + total);
         System.out.println("----Test 5----\n");      
     }
+
+    /*
+    Nombre: Chequear la funcionalidad entre  obtener  el recargo y total a pagar
+    Funcionalidades: F1: Obtener recargo.F2:  Total a pagar
+    Descripción: El usuario ingresa al sistema ,agrega los productos al carrito , visualiza el pedido, después da clic en siguiente, luego confirma el pedido. y da click en Generar el resumen del pago
+    
+    Datos de prueba:
+    productos seleccionados = Analgan, Diclofenaco 
+    cantidad = 1,1 
+    pago=Efectivo 
+    Nombre=” Kerly” 
+    sector=Centro 
+    horario= hora actual
+    
+    Resultados esperados:El  usuario  da  clic en Generar resumen de pago y le muestra el total a pagar de atención
+    Resultados obtenidos:El  usuario  da  clic en Generar resumen de pago y le muestra el total a pagar de atención
+    */
 }
