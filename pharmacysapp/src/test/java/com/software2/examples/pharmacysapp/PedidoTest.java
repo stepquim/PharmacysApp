@@ -126,6 +126,7 @@ public class PedidoTest {
     @Test
     public void testIntegracion_Test4(){
         System.out.println("----Test 4----");
+        Date hora;
         //inicio del test
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
         Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
@@ -141,6 +142,10 @@ public class PedidoTest {
         Cliente client=new Cliente("Kerly", 2, pa);
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
+        Pedido pedido= new Pedido(carrito,hora,client);//creo el pedido con los parametros definidos
+        //imprimo la hora 
+        System.out.println(pedido.ValidHora());
+        assertEquals("Horario disponible",pedido.ValidHora());
         
     }
     
