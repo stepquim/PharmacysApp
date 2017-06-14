@@ -145,14 +145,9 @@ public class PedidoTest {
         double subt=detalle1.subtotal +detalle2.subtotal;
         System.out.println("El subtotal a pagar es: " + subt);
         Date dt = new Date();  // current time
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTime(dt);   // assigns calendar to given date 
-        ArrayList<DetallePedido> detped = new ArrayList<DetallePedido>();
-        detped.add(detalle1);
-        detped.add(detalle2);
-        Pedido pe = new Pedido(detped, dt, client);
+        Pedido pe = new Pedido(carrito, dt, client);
         String hcomp = pe.ValidHora();
-        System.out.println(hcomp.toString());
+
         assertEquals("Horario disponible", hcomp.toString());
         System.out.println("----Test 4----\n");      
     }
@@ -198,7 +193,7 @@ public class PedidoTest {
         System.out.println("El recargo del pedido es: " + recargo);  
         double tot = pe.TotalPedido();    
         System.out.println("El Total del pedido es: " + tot); 
-        assertEquals(13, tot);//experado,obtenido
+        assertEquals(13.0, tot, 0.0f);//experado,obtenido
         System.out.println("----Test 5----\n");      
     }
     
