@@ -1,0 +1,5 @@
+*.log
+.metadata/.lock
+*.gen
+.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version
+.metadata/.plugins/org.eclipse.epp.logging.aeri.ide/org.eclipse.epp.logging.aeri.ide.server/remote-history/_0.fdx
