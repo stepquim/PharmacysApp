@@ -141,6 +141,55 @@ public class PedidoTest {
     	assertEquals("Se completo su pedido",pConfirmar.toString());
     	
     }
+    @Test
+    public void testIntegracion_Recargos(){
+    	Date h;
+    	System.out.println("----Test 5----");
+    	Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+    	Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+    	DetallePedido det1 = new DetallePedido(p1,1);
+    	DetallePedido det2 = new DetallePedido(p2,1);
+    	
+    	carrito.add(det1);
+    	carrito.add(det2);
+    	
+    	System.out.println(carrito.toString());
+    	Pago pa = new Pago();
+    	pa.crear_pago(true,"");
+    	
+    	Cliente comprador = new Cliente("Kerly", 2, pa);
+    	
+    	Pedido pConfirmar = new Pedido(carrito,h,comprador);
+    	double rec=pConfirmar.GetRecargo(comprador, 16.1);
+    	assertEquals(0.00,rec);
+    	
+    }
     
-
+/*
+ * Tema 5
+ * 
+ * F1 obtener recargo
+ * F2 obtener el total a pagar
+ * 
+ * El usuario ingresa al sistema,
+ * agrega los productos al carrito,
+ * visualiza el pedido. Después da clic en siguiente,
+ * donde ingresa nombre, sector,  tipo  de pago y da clic 
+ * en Confirmar pedido.
+ * El pedido se confirma y 
+ * NOTA: EL sistema calculara el recargo y 
+ * el total a pagar.
+ * 
+ * productos seleccionados = Analgan, Dicloflenaco
+ * cantidad = 1,1
+ * pago=Efectivo
+ * Nombre=”Kerly”
+ * sector=Centro
+ * horario=hora actual
+ * 
+ * El usuario confirma su pedido y si todo esta correcto 
+ * se muestra el valor del recargo y el total a pagar
+ * 
+ * 
+ * */
 }
