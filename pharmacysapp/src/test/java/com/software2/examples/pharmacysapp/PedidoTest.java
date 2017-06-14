@@ -124,5 +124,68 @@ public class PedidoTest {
         System.out.println("----Test 3----\n");      
     }
     
+    @Test  
+    public void testIntegracion_HorarioAtencion(){
+        System.out.println("----Test 4----");
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"0989");
+        Cliente client=new Cliente("Kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        //assertEquals(true, pa.getTipo());//experado,obtenido
+        
+        Pedido pedido=new Pedido(carrito, new Date(),client);
+        assertEquals(true, pedido.validarHora());//experado,obtenido
+        System.out.println("----Test 4----\n");      
+        
+    }
+    // Revisar  la funcionalidad de  obtener  el recargo  y total a pagar.
+    //F1=obtener regcargo F2=Total a pagar
+    //El    usuario    ingresa    al sistema,      agrega      los productos     al     carrito, visualiza      el      pedido. Después     da     clic     ensiguiente, donde ingresa nombre, sector,  tipo  de pago y     da     clic     en Confirmar pedido.
+    //productos seleccionados   = Analgan, Diclofenaco cantidad = 1,1 pago=Efectivo Nombre=”Kerly”sector=Centrohorario=hora actual
+    //El  usuario  da  clic en        Confirmar Pedido      y      se muestra   si   está dentro             del horario             de atención, se muestra su pedido y el total a pagar.
+   //El  usuario  da  clic en        Confirmar Pedido      y      se muestra   si   está dentro             del horario             de atención, se muestra su pedido y el total a pagar.
+    @Test  
+    public void testIntegracion_RecargoAdicional(){
+        System.out.println("----Test 5----");
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"0989");
+        Cliente client=new Cliente("kerly", 2, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        //assertEquals(true, pa.getTipo());//experado,obtenido
+        
+        Pedido pedido=new Pedido(carrito, new Date(),client);
+        System.out.println("el recargo : "+pedido.GetRecargo(client, subt)));  
+  
+       
+        
+        assertEquals(true, pedido.validarHora());//experado,obtenido
+        System.out.println("----Test 5----\n");      
+        
+    }
 
 }
+
