@@ -183,7 +183,7 @@ public class PedidoTest {
         // Total Generado del pedido
         double totalDelPedido = ped.TotalPedido();
 
-        // Hallo el total y el recargo 
+        // Hallo el total y el recargo. Luego los sumo
         double total=0.0;
         double r=0.0;
         double myTotal = 0.0;
