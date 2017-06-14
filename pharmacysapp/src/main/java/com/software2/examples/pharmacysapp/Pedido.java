@@ -28,6 +28,7 @@ public class Pedido {
         this.recargo=0;
         this.Total =0;
     }
+
     
     //Funcion que retorna un tipo de dato Cliente.
     public Cliente getCliente() {
