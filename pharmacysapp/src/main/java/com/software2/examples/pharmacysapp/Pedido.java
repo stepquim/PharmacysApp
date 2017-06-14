@@ -40,7 +40,8 @@ public class Pedido {
     
     
     //Funcion que valida si esta dentro del horario de atención y retorna un String indicando si esta dentro o no.
-    public String ValidHora(){
+    @SuppressWarnings("deprecation")
+	public String ValidHora(){
         DateFormat Horanow = new SimpleDateFormat("HH:mm");
         int h=this.hora.getHours();
         if(this.cliente.sector==1){//Sector Norte

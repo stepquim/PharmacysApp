@@ -8,14 +8,12 @@ import com.software2.examples.pharmacysapp.Producto;
 import com.software2.examples.pharmacysapp.DetallePedido;
 import com.software2.examples.pharmacysapp.Pago;  
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -132,7 +130,7 @@ public class PedidoTest {
     public void testIntegracion_Horario() {
         System.out.println("----Test 4----");      
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
-        Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
         DetallePedido detalle1 = new DetallePedido(p1,1);
         DetallePedido detalle2 = new DetallePedido(p2,1);
         carrito.add(detalle1);
@@ -143,15 +141,35 @@ public class PedidoTest {
         //Ingresa el tipo de pago
         pa.crear_pago(true,"");
         Cliente client=new Cliente("Kerly", 2, pa);
-        //Valida horario de atención
-        String lugar = client.GetSector();
-        Date date = new Date();
-        long t1 = date.getTime();
-        boolean horarioPermitido = false;
-        System.out.println("hora actual: " + t1);
+        Pedido pedido = new Pedido(carrito,new Date(), client);    
         double subt=detalle1.subtotal +detalle2.subtotal;
         System.out.println("El subtotal a pagar es: " + subt);
-        assertEquals(true, horarioPermitido);//experado,obtenido
+        assertEquals("Horario disponible", pedido.ValidHora());//esperado,obtenido
         System.out.println("----Test 4----\n");      
+    }
+    
+    @Test  
+    public void testIntegracion_Recargo() {
+        System.out.println("----Test 5----");      
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Buscapina;");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Pago pa=new Pago();
+        //Ingresa el tipo de pago
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Pedro", 2, pa);
+        Pedido pedido = new Pedido(carrito,new Date(), client);    
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        double recargo = pedido.GetRecargo(client,subt);
+        assertEquals(2.00, recargo);//esperado,obtenido
+        double total = recargo + subt;
+        System.out.println("El total con recargo es: " + total);
+        System.out.println("----Test 5----\n");      
     }
 }
