@@ -30,7 +30,9 @@ import org.junit.Test;
 /*
  * Comentarios
  * No hay uso de standar para la notacion de las variables, funciones. Usan sin ningun patron underscore y camelCase
- * 
+ * Hay nombres en ingles y otros en español
+ * Espaciado irregular
+ * Al ser un ejemplo sencillo, el codigo es self documented, no necesita mayor documentacion. Pero seria bueno tener un esquema de la arquitectura general del software
  * */
 public class PedidoTest {
     
@@ -158,6 +160,7 @@ public class PedidoTest {
     
     /*
      * Uso de cliente Juan, Sector Norte
+     * El codigo es self documented
      * */
     @Test  
     public void testIntegracion_RecargoYTotal() {
