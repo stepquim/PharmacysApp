@@ -141,16 +141,10 @@ public class PedidoTest {
         Cliente client=new Cliente("Kerly", 2, pa);
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
-        // se crea una array de pedidos y se agregan los pedidos
-        ArrayList<DetallePedido> pedidos = new ArrayList<DetallePedido>();
-        pedidos.add(detalle1);
-        pedidos.add(detalle2);
-        
-        DateFormat hora = new SimpleDateFormat("HH:mm");
+                
+        DateFormat hora = new Date();
         Pedido ped = new Pedido(pedidos, hora, client);
-        
-        
-        
+             
         //se llama al metodo ValidHora
         horaValida = ped.ValidHora();
         
@@ -181,7 +175,6 @@ public class PedidoTest {
         //se seleccionan productos
         Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
         DetallePedido detalle1 = new DetallePedido(p1,1);
-        
         carrito.add(detalle1);
         
         //visualizar el pedido con los productos seleccionados.
@@ -192,13 +185,9 @@ public class PedidoTest {
         Cliente client=new Cliente("Kerly", 2, pa);
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
-        // se crea una array de pedidos y se agregan los pedidos
-        ArrayList<DetallePedido> pedidos = new ArrayList<DetallePedido>();
-        Pedido ped = new Pedido(pedidos, Horanow, client);
-        pedidos.add(detalle1);
-        
+                
         //se llama al metodo ValidHora
-        DateFormat hora = new SimpleDateFormat("HH:mm");
+        DateFormat hora = new Date();
         Pedido ped = new Pedido(pedidos, hora, client);
         
         if horaValida.equals("Horario disponible"){
