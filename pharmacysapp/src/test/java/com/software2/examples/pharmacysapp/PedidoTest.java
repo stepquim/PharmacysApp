@@ -143,15 +143,15 @@ public class PedidoTest {
         System.out.println( pa.validar_pago(pa));
                 
         DateFormat hora = new Date();
-        Pedido ped = new Pedido(pedidos, hora, client);
+        Pedido ped = new Pedido(carrito, hora, client);
              
         //se llama al metodo ValidHora
-        horaValida = ped.ValidHora();
+        String horaValida = ped.ValidHora();
         
         if horaValida.equals("Horario disponible"){
             double subt=detalle1.subtotal +detalle2.subtotal;
             System.out.println("El subtotal a pagar es: " + subt);
-            assertEquals("Horario disponible", horaValida);//experado,obtenido
+            assertEquals("Horario disponible", horaValida.toString());//experado,obtenido
             System.out.println("----Test 4----\n");    
         } 
        
@@ -188,7 +188,7 @@ public class PedidoTest {
                 
         //se llama al metodo ValidHora
         DateFormat hora = new Date();
-        Pedido ped = new Pedido(pedidos, hora, client);
+        Pedido ped = new Pedido(carrito, hora, client);
         
         if horaValida.equals("Horario disponible"){
             double subt=detalle1.subtotal;
