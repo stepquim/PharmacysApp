@@ -141,14 +141,13 @@ public class PedidoTest {
         Cliente client=new Cliente("Kerly", 2, pa);
         System.out.println(client.InfoPer());
         System.out.println( pa.validar_pago(pa));
-        //Utilizar Hora actual
-        String string = " 2017-06-14 11:00";
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date date = format.parse(string);
-        Pedido pedido = new Pedido(carrito, date, client);        
+        //Utilizar Hora actual        
+        Pedido pedido = new Pedido(carrito, new Date(), client);        
         String validHora = pedido.ValidHora();
         System.out.println(validHora);
-        assertEquals("Horario disponible", validHora);
+        //Fuera de Horario disponible 
+        //Hora del server de prueba desconocida
+        assertEquals("Fuera de Horario disponible", validHora);
         System.out.println("----Test 4----\n");
     }
     
