@@ -47,7 +47,7 @@ public class PedidoTest {
         catalogo.add(producto3);
         catalogo.add(producto4);
     }
-    // Prueba 1 acollaguazo
+    // Prueba 2 acollaguazo
     
     public Producto obtener_producto_catalogo(ArrayList<Producto> productos, String clave){
         Producto encontrado = null;
