@@ -186,6 +186,29 @@ public class PedidoTest {
         System.out.println("----Test 5----\n");      
         
     }
+	
+	//Taller
+	
+	@Test  
+    public void PruebaIntegracion4(){
+        System.out.println("----Test 5----");
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+		DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        Pago pago=new Pago();
+        //Ingresa el tipo de pago
+        pago.crear_pago(true,null);
+        Cliente cliente = new Cliente("KERLY", 2, pago);
+        double subtotal=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("Subtotal: " + subtotal);
+        Pedido pedido=new Pedido(carrito, new Date(),cliente);
+        System.out.println("Recargo: "+pedido.GetRecargo(cliente, subtotal)));
+        assertEquals(true, pedido.validarHora());   
+        
+    }
 
 }
 
