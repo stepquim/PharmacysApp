@@ -106,12 +106,58 @@ public class PedidoTest {
 		Producto p2 = obtener_producto_catalogo(catalogo,"Diclofenaco");
 		DetallePedido detalle1 = new DetallePedido(p1,1);
 		DetallePedido detalle2 = new DetallePedido(p2,1);
-		
 		carrito.add(detalle1);
-		carrito.add(detalle2)
-		//Datos de prueba: productosseleccionados=Analgan,Diclofena cocantidad = 1,1pago=EfectivoNombre=”Kerly”sector=Centrohorario=horaactua
+		carrito.add(detalle2);
+		//Datos de prueba: productosseleccionados=Analgan,Diclofena cocantidad = 1,1 pago=EfectivoNombre=”Kerly”sector 2 =Centro horario=horaactua
 		
-	}
+		//visualizar el pedido con los productos seleccionados.
+        System.out.println("*******Carrito*****");
+        System.out.println(carrito.toString());
+        assertEquals(1, carrito.size()); //experado,obtenido
+        System.out.println("----Test 4----\n"); 
+		
+		Pago pago = new Pago();
+		pago.crear_pago(true,null);
+				
+		Cliente user = new Cliente("Kerly", 2, pago);
+	
+		System.out.println(user.InfoPer());
+        System.out.println(pago.validar_pago(pago));
+        double subt=detalle1.subtotal +detalle2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        //assertEquals(true, pa.getTipo());//experado,obtenido
+        
+        Pedido pedido=new Pedido(carrito, new Date(),user);
+        
+        System.out.println("----Test 4----\n");    		
+		
+		System.out.println(user.InfoPer());
+		System.out.println(carrito.toString);
+		
+		System.out.println("VALOR TOTAL DEL PEDIDO TEST4:"+Pedido.TotalPedido);
+		System.out.println("Desea confirmar su pedido? S[1]/N[0]");
+		
+		Scanner sc=new Scanner(System.in);
+		int i=sc.getInt();
+		
+		if (i==1){
+		System.out.println("Procesando pedido");
+		assertEquals(true, pedido.validarHora());} 
+		else {
+			System.out.println("Pedido cancelado");
+		}
+	    }
+		
+		//Prueba de integracion 5 - Collaguazo Adriana 08/08/2015
+		Id: 5
+		Nombre: Revisar la funcionalidad de obtener el recargo y total a pagar.
+		Mdulos F1: GetRecargo, F2: TotalPedido
+		Descripcion: Una vez confirmado el pedido, se obtiene el recargo y el valor a pagar.
+		Datos de prueba = productosseleccionados=Analgan,Diclofenacocantidad = 1,1 pago=EfectivoNombre=”Kerly”sector=Centrohorario=horaactual. Subtotal y Total a pagar.
+		Resultados esperados = El usuario da click en obtener el valor a pagar.
+		Resultados obtenidos = El usuario procede a pagar el pedido en efectivo.
+		
+		
    
     
     @Test  
