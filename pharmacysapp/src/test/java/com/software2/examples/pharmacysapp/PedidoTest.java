@@ -147,6 +147,37 @@ public class PedidoTest {
         System.out.println("----Test 4----\n");
     }
     
+@Test
+    public void testIntegracion5() {
+        System.out.println("----Test 5----\n");
+        System.out.println("El usuario ingresa al sistema\n");
+        System.out.println("El usuario da click en 'Ver Catalogo'\n");
+        System.out.println("El catálogo de la farmacia es: " + catalogo.size() + "\n");
+        System.out.println(catalogo.toString());
+        System.out.println("El usuario aniade los productos deseados al carrito\n");
+        Producto product1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto product2 = obtener_producto_catalogo(catalogo,"Buscapina");
+        DetallePedido detail1 = new DetallePedido(product1,1);
+        DetallePedido detail2 = new DetallePedido(product2,1);
+        carrito.add(detail1);
+        carrito.add(detail2);
+        Pago pa=new Pago();
+        pa.crear_pago(true,"");
+        Cliente client=new Cliente("Julia", 1, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pa.validar_pago(pa));
+        double subt=detail1.subtotal +detail2.subtotal;
+        System.out.println("El subtotal a pagar es: " + subt);
+        System.out.println("El usuario da click en 'Confirmar el pedido'");
+        Date hora= new Date();
+        Pedido ped = new Pedido(carrito, hora, client);
+        System.out.println("Validacion de horario: " + ped.ValidHora());
+        System.out.println("Subtotal: " + subt);
+        System.out.println("Recargo: " + ped.GetRecargo(client, subt));
+        System.out.println("Total: " + ped.TotalPedido());
+        assertEquals(12.1,ped.TotalPedido(), 1);
+        System.out.println("----Test 5----\n");
+    }
 
 }
 
