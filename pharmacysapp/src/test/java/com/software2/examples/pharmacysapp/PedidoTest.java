@@ -99,8 +99,6 @@ public class PedidoTest {
         System.out.println("----Test 2----\n"); 
     }
     
-   
-    
     @Test  
     public void testIntegracion_PagoSubtotal() {
         System.out.println("----Test 3----");      
@@ -125,3 +123,81 @@ public class PedidoTest {
     }
     
 
+    @Test
+    public void testIntegracion_Test4(){
+        System.out.println("----Test 4----");
+        Date hora=new Date();
+        //inicio del test
+        Producto p1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto p2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        System.out.println(carrito.toString());
+        
+        
+        Pago pay1=new Pago();
+        pay1.crear_pago(true,"");
+        Cliente client1=new Cliente("Jota", 2, pay1);
+        System.out.println(client.InfoPer());
+        System.out.println( pay1.validar_pago(pay1));
+        Pedido pedido= new Pedido(carrito,hora,client1);
+        //imprimo la hora 
+        System.out.println(pedido.ValidHora());
+        assertEquals("Horario disponible",pedido.ValidHora());
+        
+    }
+    /*
+    CASO DEPRUEBA 5
+    FUNCIONALIDAD/MODULOS
+    F1: OBTENER EL RECARGO
+    F2: TOTAL A PAGAR
+    
+    El usuario ingresa al sistema, agrega productos al carrito, visualiza  elpedido.
+    Después da clic en siguiente, donde ingresa nombre, sector,  tipo  de pago 
+    clic en Confirmar pedido. luego se muestra su recargo, y el total a pagar del usuario
+    
+    productos seleccionados   = Analgan, Diclofenaco
+    cantidad = 1,1
+    pago=Efectivo
+    Nombre=”Jota”
+    sector=Sur
+    horario=hora actual
+    
+    el usuario da click en confirmar el pedido, se muestra el recargo el valor total a pagar
+    
+    El usuario confirma el pedido y se muestra el valor total a pagar
+    */
+    //a
+    @Test
+    public void testIntegracion_Test5(){
+        System.out.println("----Test 5----");
+        
+        
+        Date hora=new Date();
+        
+        Producto producto1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto producto2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detalle1 = new DetallePedido(producto1,1);
+        DetallePedido detalle2 = new DetallePedido(producto2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        System.out.println(carrito.toString());//se muestra el pedido
+        
+        
+        Pago pay1=new Pago();
+        pay1.crear_pago(true,"");
+        Cliente client=new Cliente("Daniel", 3, pay1);
+        System.out.println(client.InfoPer());
+        System.out.println( pay1.validar_pago(pay1));
+        Pedido pedido= new Pedido(carrito,hora,client);
+       
+        System.out.println(pedido.ValidHora());
+        double subtotal=detalle1.SubtotalDeProducto() + detalle2.SubtotalDeProducto();
+        double recargo= 0.0;
+        System.out.println(pedido.TotalPedido());
+
+        
+        assertEquals(13.0,pedido.TotalPedido(),1);        
+    }
