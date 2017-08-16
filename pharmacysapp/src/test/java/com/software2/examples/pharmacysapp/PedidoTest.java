@@ -123,5 +123,71 @@ public class PedidoTest {
         assertEquals(true, pa.getTipo());//experado,obtenido
         System.out.println("----Test 3----\n");      
     }
+	
+	
+	 @Test
+    public void testIntegracion_Test4(){
+        System.out.println("----Test 4----");
+        Date hour=new Date();
+        //TEST
+        Producto product1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto product2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detail1 = new DetallePedido(product1,1);
+        DetallePedido detail2 = new DetallePedido(product2,1);
+        carrito.add(detail1);
+        carrito.add(detail2);
+        System.out.println(carrito.toString());
+        
+        //metodo de pago del producto
+        Pago pay=new Pago();
+        pay.crear_pago(true,"");//pago en efectivo
+        Cliente client=new Cliente("Jonathan", 2, pay);
+        System.out.println(client.InfoPer());
+        System.out.println( pay.validar_pago(pay));
+        Pedido pedido= new Pedido(carrito,hour,client);
+         
+        System.out.println(pedido.ValidHora());
+        assertEquals("Horario disponible",pedido.ValidHora());
+        
+    }
+    /*
+	PRUEBA 5
+	EL USUARIO INGRESA A LA APLICACION
+	HACE SU PEDIDO AGREGANDO PRODUCTOS AL CARRITO
+	OBTIENE UN RESUMEN DE SU PEDIDO
+	INGRESA SU NOMBRE Y LA DIRECCION DE DOMICILIO
+	SELECCIONA EL TIPO DE PAGO
+	SE MUESTRA EL VALOR DEL PEDIDO Y DEL RECARGO
+    */
+    @Test
+    public void testIntegracion_Test5(){
+        System.out.println("----Test 5----");
+        
+        
+        Date hour=new Date();
+        //TEST
+        Producto product1 = obtener_producto_catalogo(catalogo,"Analgan");
+        Producto product2 = obtener_producto_catalogo(catalogo,"Dicloflenaco");
+        DetallePedido detail1 = new DetallePedido(p1,1);
+        DetallePedido detail2 = new DetallePedido(p2,1);
+        carrito.add(detail1);
+        carrito.add(detail2);
+        System.out.println(carrito.toString());
+        
+        //metodo de pago del producto
+        Pago pay=new Pago();
+        pay.crear_pago(true,"");//pago en efectivo
+        Cliente client=new Cliente("Carlos", 3, pa);
+        System.out.println(client.InfoPer());
+        System.out.println( pay.validar_pago(pay));
+        Pedido pedido= new Pedido(carrito,hour,client);
+        
+        System.out.println(pedido.ValidHora());
+        double subtotal=detail1.SubtotalDeProducto() + detail2.SubtotalDeProducto();
+        double recargo= 0.0;
+        System.out.println(pedido.TotalPedido());
+        
+        assertEquals(13.0,pedido.TotalPedido(),1);
+    }
     
 
